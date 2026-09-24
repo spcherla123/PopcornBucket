@@ -1,0 +1,5 @@
+// Get the visible width and height of the browser window
+let viewportWidth = window.innerWidth;
+let viewportHeight = window.innerHeight;
+
+console.log(`Viewport: ${viewportWidth}px x ${viewportHeight}px`);
