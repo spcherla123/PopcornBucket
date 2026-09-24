@@ -115,5 +115,27 @@ try {
     console.error("Oops! Couldn't load the popular movies:", error);
 }
 
+try {
+    const movies = await TMDB.GetPopularMovies();
 
+    movies.forEach(movie => {
+        
+        async function PrintDetails() {
+            const details = await TMDB.GetMovieDetails(movie.ID);
+            console.info(details.Title);
+            console.info(details.Tagline);
+            console.info(details.Overview);
+            console.info(details.TMDBRating);
+            console.info(details.Runtime);
+            console.info(details.ReleaseDate);
+            console.info(details.PosterPath);
+            console.info(details.BackdropPath);
+        }
+
+        PrintDetails();
+
+    });
+} catch (error) {
+    console.error("Oops! Couldn't load the popular movies:", error);
+}
 
