@@ -39,3 +39,35 @@ Other ways to get movies and shows
 
 ## Refer to Main.js
 And other demo files
+
+
+## Test 
+```js
+import * as TMDB from '../../tmdb_wrapper.js';
+try {
+
+    TMDB.Authenticate();
+
+    const movies = await TMDB.GetPopularMovies();
+
+    movies.forEach(movie => {
+            
+        async function PrintDetails() {
+            const details = await TMDB.GetMovieDetails(movie.ID);
+            console.info(details.Title);
+            console.info(details.Tagline);
+            console.info(details.Overview);
+            console.info(details.TMDBRating);
+            console.info(details.Runtime);
+            console.info(details.ReleaseDate);
+            console.info(details.PosterPath);
+            console.info(details.BackdropPath);
+        }
+
+        PrintDetails();
+
+    });
+} catch (error) {
+    console.error("Error: ", error);
+}
+```
