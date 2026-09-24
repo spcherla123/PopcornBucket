@@ -1,0 +1,261 @@
+/*
+https://www.w3schools.com/css
+
+| CSS Syntax
+
+[Selector]         [Declaration]                [Declaration]
+    h1       {  color:         blue;     font-size:      12px; }                         }
+               [Property]     [Value]   [Property]     [Value]
+ 
+1. The selector points to the HTML element you want to style.
+2. The declaration block contains one or more declarations separated by semicolons.
+3. Each declaration includes a CSS property name and a value, separated by a colon.
+
+| CSS Selectors
+
+1. Element selector
+
+  Here, all <p> elements on the page will be center-aligned, with a red text color: 
+  p {
+    text-align: center;
+    color: red;
+  }
+
+2. ID Selector
+
+  The CSS rule below will be applied to the HTML element with id="para1": 
+  #para1 {
+    text-align: center;
+    color: red;
+  }
+
+3. Class Selector
+
+  In this example all HTML elements with class="center" will be red and center-aligned: 
+  .center {
+    text-align: center;
+    color: red;
+  }
+
+4. Multiple classes in one element
+  In this example the <p> element will be styled according to class="center" and to class="large": 
+    <p class="center large">This paragraph refers to two classes.</p>
+
+
+ALL CSS Simple Selectors
+- #id
+- .class
+- *
+- element
+- element, element, ...
+
+*/
+
+/* Properties
+https://www.w3schools.com/colors/colors_names.asp
+- color: color name, or with a RGB, HEX, HSL, RGBA, HSLA value. (CSS Text Color)
+  rgb(255, 99, 71) or #rrggbb or hsl(9, 100%, 64%) or rgba(255, 99, 71, 0.5) or hsla(9, 100%, 64%, 0.5)
+
+- border: 2px solid Tomato
+*/
+
+.background-tutorial {
+  /* specifies the background color for any HTML elements */
+  background-color: lightblue; 
+  
+  /* It can take a value from 0.0 - 1.0. The lower value, the more transparent:*/ 
+  opacity: 0.3; 
+  
+  /* specifies an image to use as the background of an element */
+  background-image: url("paper.gif"); 
+  
+  /* sets if/how a background image will be repeated. */
+  background-repeat: repeat-x;  /* repeat-y, no-repeat */
+  
+  /* set the starting position of the background image */
+  background-position: right top;
+
+  /* specifies whether the background image should scroll or be fixed (will not scroll with the rest of the page) */
+  background-attachment: fixed; /* scroll|fixed|local|initial|inherit */
+  
+  /* Specify how far the background should extend within an element */
+  background-clip: padding-box; /* border-box|padding-box|content-box|initial|inherit */
+
+  /* specifies the origin position (the background positioning area) of a background image. */
+  background-origin: padding-box; /*padding-box|border-box|content-box|initial|inherit */
+
+  /* Specify the size of a background-image with "auto" and in pixels */
+  background-size: 60px 120px; /*75% 50% auto|length|cover|contain|initial|inherit */
+
+  /* Use the shorthand property to set all the background properties in one declaration: */
+  background: #ffffff url("img_tree.png") no-repeat right top
+}
+
+.border-tutorial {
+
+  border-style: dotted; /*
+    dotted - Defines a dotted border
+    dashed - Defines a dashed border
+    solid - Defines a solid border
+    double - Defines a double border
+    groove - Defines a 3D grooved border. The effect depends on the border-color value
+    ridge - Defines a 3D ridged border. The effect depends on the border-color value
+    inset - Defines a 3D inset border. The effect depends on the border-color value
+    outset - Defines a 3D outset border. The effect depends on the border-color value
+    none - Defines no border
+    hidden - Defines a hidden border
+  */
+
+  /* it is possible to specify a different border for each side */
+
+  border-top-style: dotted;
+  border-right-style: solid;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+
+  /* Shorthand-> border-style: dotted solid; */
+
+  /* specifies the width of the four borders */
+  border-width: 5px; /* thin, medium, or thick */
+
+  /* it is possible to specify a different border width for each side */
+
+  border-top-width: dotted;
+  border-right-width: solid;
+  border-bottom-width: dotted;
+  border-left-width: solid;
+
+  /* used to set the color of the four borders */
+  border-color: red;
+
+  /* red top, green right, blue bottom and yellow left */
+  border-color: red green blue yellow;
+
+  /* used to add rounded borders to an element */
+  border-radius: 5px;
+}
+
+/* Margins define the distance between an element's border and the surrounding elements. */
+.margin-tutorial {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+
+  /* shorthand */
+  margin: 25px 50px 75px 100px;
+
+  /* You can set the margin property to auto to horizontally center the element within its container. */
+  margin: auto;
+}
+
+/* The CSS padding properties are used to generate space around an element's content, inside of any defined borders.*/
+.padding-tutorial {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+
+  /* shorthand */
+  padding: 25px 50px 75px 100px;
+
+  /*
+    The CSS width property specifies the width of the element's content area. The content area is the portion inside the padding, border, and margin of an element (the box model).
+    So, if an element has a specified width, the padding added to that element will be added to the total width of the element. This is often an undesirable result 
+    */
+  width: 300px;
+}
+
+/* The CSS height and width properties are used to set the height and width of an element. */
+.width-and-height-tutorial {
+  height: 200px;
+  width: 50%; /* auto, length, %, initial, inherit */
+
+  /* The min-width and max-width properties are used to set the minimum and maximum width of an element. */
+  max-width: 500px; /* length, %, none */
+  max-height: 500px; /* length, %, none */
+  min-width: 50px; /* length, %, none */
+  max-height: 50px; /* length, %, none */
+  /* The min-height and max-height properties are used to set the minimum and maximum height of an element. */
+
+}
+/* The CSS Box Model
+--------------------------------------------------------------------
+|                             Margin                               |
+|    ---------------------------------------------------------     |
+|    |                        Border                         |     |
+|    |   -------------------------------------------------   |     |
+|    |   |                    Padding                    |   |     |
+|    |   |   ----------------------------------------    |   |     |
+|    |   |   |                Content               |    |   |     |
+|    |   |   ----------------------------------------    |   |     |
+|    |   |                                               |   |     |
+|    |   -------------------------------------------------   |     |
+|    |                                                       |     |
+|    ---------------------------------------------------------     |
+|                                                                  |
+--------------------------------------------------------------------
+
+The total width of an element should be calculated like this:
+
+Total element width = width + left padding + right padding + left border + right border
+
+The total height of an element should be calculated like this:
+
+Total element height = height + top padding + bottom padding + top border + bottom border
+*/
+
+/* An outline is a line that is drawn around elements, OUTSIDE the borders, to make the element "stand out". */
+.outline-tutorial {
+  outline-style: dotted; /*
+    dotted - Defines a dotted outline
+    dashed - Defines a dashed outline
+    solid - Defines a solid outline
+    double - Defines a double outline
+    groove - Defines a 3D grooved outline
+    ridge - Defines a 3D ridged outline
+    inset - Defines a 3D inset outline
+    outset - Defines a 3D outset outline
+    none - Defines no outline
+    hidden - Defines a hidden outline
+  */
+
+  /* specifies the width of the outline, and can have one of the following values */
+  outline-width: 5px; /* thin, medium, or thick */
+
+
+  /* used to set the color of the outline */
+  outline-color: red;
+
+  /* adds a space between an outline and the edge/border of an element. The space between an element and its outline is transparent. */
+  outline-offset: 15px;
+
+  /* used to add rounded borders to an element */
+  border-radius: 5px;
+
+}
+
+/* The CSS overflow property controls what happens to content that is too big to fit into an area.
+It specifies whether to clip the content or to add scrollbars when the content of an element is too big. */
+.overflow-tutorial {
+    overflow: scroll; 
+    /*
+        visible - Default. The overflow is not clipped. The content renders outside the element's box
+        hidden - The overflow is clipped, and the rest of the content is hidden
+        scroll - Scrollbars are added. User must scroll to see all content
+        auto - Similar to scroll, but adds scrollbars only when necessary
+    */
+
+    overflow-x: scroll;
+    overflow-y: scroll;
+
+    /* normal|anywhere|break-word|initial|inherit; */
+    overflow-wrap: normal;
+    /* 
+        normal	- Long words will not break, even if they overflow the container. This is default	
+        anywhere -	Long words will break if they overflow the container	
+        break-word -	Long words will break if they overflow the container	
+        initial	- Sets this property to its default value. Read about initial	
+        inherit	- Inherits this property from its parent element. Read about inherit
+    */
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="../CSS/main.css">
+</head>
+<body>
+  <div id="details-container">
+
+    <!-- 1) Button to return to main page -->
+    <a href="main.html" class="back-to-page-button">← Back to Demo Home</a>
+    
+    <!-- 2) Backround banner that is filled by JavaScript -->
+    <div id="details-banner-container">
+      <img id="details-backdrop-banner" src="" alt="Movie Backdrop">
+    </div>
+
+    <!-- 3) Movie title that is filled by JavaScript -->
+    <h1 id="details-title">Loading...</h1>
+    <p id="details-tagline"></p>
+    
+    <!-- 4) Movie overview that is filled by JavaScript -->
+    <h3>Overview</h3>
+    <p id="details-overview"></p>
+
+    <!-- 5) Release date + Rating + RUntime that is filled by JavaScript -->
+    <div id="details-date-rating-runtime-grid">
+      <p><strong id="details-date-label">Release Date:</strong> <span id="details-date"></span></p>
+      <p><strong id="details-rating-label">Rating:</strong> ⭐ <span id="details-rating"></span></p>
+      <p><strong id="details-runtime-label">Runtime:</strong> <span id="details-runtime"></span></p>
+    </div>
+
+    <!-- 5) Cast and crew display that is filled by JavaScript -->
+    <h3>Cast & Crew</h3>
+    <div id="cast-scroll-container" class="cast-scroll-container">
+      <!-- JavaScript will inject all the dynamic cast cards directly in here -->
+    </div>
+
+    <!-- NEW: The Videos Section -->
+    <h3>Trailers & Extras</h3>
+    <!--<div id="video-scroll-container" class="video-scroll-container">
+      <div class="video-card">
+          <div id="video-player-container" class="video-player-container"></div>
+          <div class="video-meta">
+              <h2 id="video-title">Loading title...</h2>
+              <span id="video-type" class="badge">Type</span>
+          </div>
+      </div>
+    </div>-->
+
+
+      <!-- Images section for TV shows Section -->
+    <h3>Images</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="images-scroll-container" class="images-scroll-container"></div>
+
+    
+
+  </div>
+
+<script src="../JavaScript/movie-details.js", type="module"></script>
+</body>
+</html>

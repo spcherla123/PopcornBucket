@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="../CSS/main.css">
+</head>
+<body>
+  <div id="season-details-container">
+
+    <!-- 1) Button to return to main page -->
+    <a id=season-details-back href="" class="back-to-page-button">← Back to Show</a>
+    
+    <!-- 2) Backround banner that is filled by JavaScript -->
+    <div id="season-details-banner-container">
+      <img id="season-details-blur-backdrop-banner" src="" alt="Movie Backdrop">
+      <img id="season-details-backdrop-banner" src="" alt="Movie Backdrop">
+    </div>
+
+    <!-- 3) Movie title that is filled by JavaScript -->
+    <h1 id="season-details-title">Loading...</h1>
+    <p id="season-details-tagline"></p>
+    
+    <!-- 4) Movie overview that is filled by JavaScript -->
+    <h3>Overview</h3>
+    <p id="season-details-overview"></p>
+
+    <!-- 5) Release date + Rating + RUntime that is filled by JavaScript -->
+    <div id="season-details-date-rating-runtime-grid">
+      <p><strong id="season-details-date-label">Release Date:</strong> <span id="season-details-date"></span></p>
+      <p><strong id="season-details-rating-label">Rating:</strong> ⭐ <span id="season-details-rating"></span></p>
+      <p><strong id="season-details-runtime-label">Runtime:</strong> <span id="season-details-runtime"></span></p>
+    </div>
+
+    <!-- 5) Cast and crew display that is filled by JavaScript -->
+    <h3>Cast & Crew</h3>
+    <div id="season-cast-scroll-container" class="cast-scroll-container">
+      <!-- JavaScript will inject all the dynamic cast cards directly in here -->
+    </div>
+
+
+    <!-- Seasons section for TV shows Section -->
+    <h3>Episodes</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="episode-scroll-container"></div>
+
+    <!-- Images section for TV shows Section -->
+    <h3>Images</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="images-scroll-container" class="images-scroll-container"></div>
+
+
+    <!-- NEW: The Videos Section -->
+    <h3>Trailers & Extras</h3>
+    <div id="video-scroll-container">
+        <!-- JavaScript will dynamically fill your clips here -->
+    </div>
+  </div>
+
+  <script src="../JavaScript/season-details.js", type="module"></script>
+</body>
+</html>
