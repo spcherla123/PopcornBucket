@@ -47,7 +47,7 @@ export function Authenticate()
  *   Tagline: string,
  *   Overview: string,
  *   ReleaseDate: string,
- *   TMBDRating: number
+ *   TMDBRating: number
  * }|undefined>} A promise that resolves to the formatted movie details, or undefined if an error occurs.
  */
 export async function GetMovieDetails(InMovieID) {
@@ -66,7 +66,7 @@ export async function GetMovieDetails(InMovieID) {
            Tagline: item.tagline,
            Overview: item.overview,
            ReleaseDate: item.release_date,
-           TMBDRating: item.vote_average.toFixed(1),
+           TMDBRating: item.vote_average.toFixed(1),
         };
     } catch (error) {
         console.error("Oops! Couldn't load the popular movies:", error);
@@ -88,7 +88,7 @@ export async function GetMovieDetails(InMovieID) {
  *   Tagline: string,
  *   Overview: string,
  *   FirstAirDate: string,
- *   TMBDRating: string,
+ *   TMDBRating: string,
  *   Seasons: Array<{
  *     ID: number,
  *     Name: string,
@@ -97,7 +97,7 @@ export async function GetMovieDetails(InMovieID) {
  *     PosterPath: string|null,
  *     EpisodeCount: number,
  *     AirDate: string,
- *     TMBDRating: number
+ *     TMDBRating: number
  *   }>
  * }|undefined>} A promise that resolves to the formatted TV show details, or undefined if an error occurs.
  */
@@ -117,7 +117,7 @@ export async function GetShowDetails(InTVShowID) {
            Tagline: item.tagline,
            Overview: item.overview,
            FirstAirDate: item.first_air_date,
-           TMBDRating: item.vote_average.toFixed(1),
+           TMDBRating: item.vote_average.toFixed(1),
            Seasons: item.seasons.map(seasonItem => ({
                         ID: seasonItem.id,
                         Name: seasonItem.name,
@@ -126,7 +126,7 @@ export async function GetShowDetails(InTVShowID) {
                         PosterPath: seasonItem.poster_path,
                         EpisodeCount: seasonItem.episode_count,
                         AirDate: seasonItem.air_date,
-                        TMBDRating: seasonItem.vote_average.toFixed(1)
+                        TMDBRating: seasonItem.vote_average.toFixed(1)
                     }))
         };
 
@@ -150,7 +150,7 @@ export async function GetShowDetails(InTVShowID) {
  *   PosterPath: string|null,
  *   EpisodeCount: number,
  *   AirDate: string,
- *   TMBDRating: string,
+ *   TMDBRating: string,
  *   Episodes: Array<{
  *     ID: number,
  *     Name: string,
@@ -160,7 +160,7 @@ export async function GetShowDetails(InTVShowID) {
  *     Overview: string,
  *     StillPath: string|null,
  *     AirDate: string,
- *     TMBDRating: number
+ *     TMDBRating: number
  *   }>
  * }|undefined>} A promise that resolves to the formatted season details, or undefined if an error occurs.
  */
@@ -179,7 +179,7 @@ export async function GetSeasonDetails(InShowID, InSeasonNumber) {
             PosterPath: item.poster_path,
             EpisodeCount: item.episodes.length,
             AirDate: item.air_date,
-            TMBDRating: item.vote_average.toFixed(1),
+            TMDBRating: item.vote_average.toFixed(1),
             Episodes: item.episodes.map(episodeItem => ({
                         ID: episodeItem.id,
                         Name: episodeItem.name,
@@ -189,7 +189,7 @@ export async function GetSeasonDetails(InShowID, InSeasonNumber) {
                         Overview: episodeItem.overview,
                         StillPath: episodeItem.still_path,
                         AirDate: episodeItem.air_date,
-                        TMBDRating: episodeItem.vote_average.toFixed(1)
+                        TMDBRating: episodeItem.vote_average.toFixed(1)
                     }))
 
         };
@@ -216,7 +216,7 @@ export async function GetSeasonDetails(InShowID, InSeasonNumber) {
  *   Overview: string,
  *   StillPath: string|null,
  *   AirDate: string,
- *   TMBDRating: number,
+ *   TMDBRating: number,
  *   Runtime: number
  * }|undefined>} A promise that resolves to the formatted episode details, or undefined if an error occurs.
  */
@@ -236,7 +236,7 @@ export async function GetEpisodeDetails(InShowID, InSeasonNumber, InEpisodeNumbe
             Overview: item.overview,
             StillPath: item.still_path,
             AirDate: item.air_date,
-            TMBDRating: item.vote_average.toFixed(1),
+            TMDBRating: item.vote_average.toFixed(1),
             Runtime: item.runtime
         };
 
@@ -311,6 +311,48 @@ export async function GetVideosByShow(InTVShowID) {
         const response = await fetch(url, OPTIONS)
         const data = await response.json();
 
+        return data.results;
+     } catch (error) {
+        console.error("Oops! Couldn't load the movies by search:", error);
+     }
+}
+
+/**
+ * Fetches raw TMDB video data tracks (trailers, teasers, featurettes) for a specific TV show season.
+ * 
+ * @async
+ * @function GetVideosByShow
+ * @param {number|string} InTVShowID - The unique identifier of the TV show season.
+ * @param {number} InSeasonNumber - The unique identifier of the TV show season.
+ * @returns {Promise<Array<Object>|undefined>} A promise that resolves to the raw list of video objects from TMDB, or undefined if an error occurs.
+ */
+export async function GetVideosBySeason(InTVShowID, InSeasonNumber) {
+    try {
+        const url = `${BASE_URL}/tv/${InTVShowID}/season/${InSeasonNumber}/videos`; 
+        const response = await fetch(url, OPTIONS)
+        const data = await response.json();
+
+        return data.results;
+     } catch (error) {
+        console.error("Oops! Couldn't load the movies by search:", error);
+     }
+}
+
+/**
+ * Fetches raw TMDB video data tracks (trailers, teasers, featurettes) for a specific TV show season.
+ * 
+ * @async
+ * @function GetVideosByShow
+ * @param {number|string} InTVShowID - The unique identifier of the TV show season.
+ * @param {number} InSeasonNumber - The unique identifier of the TV show season.
+ * @param {number} InEpisodeNumber - The unique identifier of the TV show season.
+ * @returns {Promise<Array<Object>|undefined>} A promise that resolves to the raw list of video objects from TMDB, or undefined if an error occurs.
+ */
+export async function GetVideosByEpisode(InTVShowID, InSeasonNumber, InEpisodeNumber) {
+    try {
+        const url = `${BASE_URL}/tv/${InTVShowID}/season/${InSeasonNumber}/episode/${InEpisodeNumber}/videos`; 
+        const response = await fetch(url, OPTIONS)
+        const data = await response.json();
 
         return data.results;
      } catch (error) {

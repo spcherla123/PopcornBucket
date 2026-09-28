@@ -21,7 +21,7 @@ document.getElementById('season-details-title').textContent = episode.Name;
 document.getElementById('season-details-tagline').textContent = episode.Tagline || '';
 document.getElementById('season-details-overview').textContent = episode.Overview;
 document.getElementById('season-details-date').textContent = episode.AirDate;
-document.getElementById('season-details-rating').textContent = episode.TMBDRating;
+document.getElementById('season-details-rating').textContent = episode.TMDBRating;
 
 const credits = await TMDB.GetCreditsByEpisode(showID, seasonNumber, episodeNumber);
 
@@ -113,3 +113,44 @@ images.forEach(imageItem => {
 
     imagesContainer.appendChild(card);
 });
+
+const videoContainer = document.getElementById("video-scroll-container");
+    videoContainer.innerHTML = '';
+    
+    const videos = await TMDB.GetVideosByEpisode(showID, seasonNumber, episodeNumber);
+    
+    videos.forEach(videoItem => {   
+        if (videoItem.site !== "YouTube") return; // Skip unsupported platforms for now
+    
+        const card = document.createElement('div');
+        card.className = 'video-card'; 
+    
+        // 1. Set up a lightweight thumbnail placeholder using YouTube's image servers
+        card.innerHTML = `
+            <div class="video-player-container" data-video-key="${videoItem.key}">
+                <img class="video-thumbnail" src="https://img.youtube.com/vi/${videoItem.key}/maxresdefault.jpg" alt="${videoItem.name}">
+                <div class="play-button-overlay">▶</div>
+            </div>
+            <div class="video-meta">
+                <h3 class="video-title"> ${videoItem.name} </h3>
+                <span class="video-type badge">| ${videoItem.type}</span>
+            </div>
+        `;
+    
+        // 2. Add an event listener so the heavy video ONLY loads when someone clicks the card
+        card.querySelector('.video-player-container').addEventListener('click', function() {
+            const videoKey = this.getAttribute('data-video-key');
+            
+            // Swap the image out for the live iframe with autoplay safely turned on here
+            this.innerHTML = `
+                <iframe 
+                    src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
+                    title="Video Player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>`;
+        });
+    
+        videoContainer.appendChild(card);
+    });

@@ -19,7 +19,7 @@ try {
     document.getElementById('details-tagline').textContent = tvShow.Tagline || '';
     document.getElementById('details-overview').textContent = tvShow.Overview;
     document.getElementById('details-date').textContent = tvShow.FirstAirDate;
-    document.getElementById('details-rating').textContent = tvShow.TMBDRating;
+    document.getElementById('details-rating').textContent = tvShow.TMDBRating;
         
     const backdropImg = document.getElementById('details-backdrop-banner');
     backdropImg.src = TMDB.GetImageUrl(tvShow.BackdropPath);
@@ -66,7 +66,7 @@ try {
                     Season ${seasonItem.SeasonNumber}
                 </div>
                 <div class="season-details-row">
-                    <span class="season-rating">⭐ ${seasonItem.TMBDRating}</span>
+                    <span class="season-rating">⭐ ${seasonItem.TMDBRating}</span>
                     <span class="season-separator">•</span>
                     <span class="season-release-date">${seasonItem.AirDate} </span>
                 </div>
@@ -133,4 +133,45 @@ castContainer.addEventListener("wheel", (event) => {
         `;
 
         imagesContainer.appendChild(card);
+    });
+
+    const videoContainer = document.getElementById("video-scroll-container");
+    videoContainer.innerHTML = '';
+    
+    const videos = await TMDB.GetVideosByShow(showID);
+    
+    videos.forEach(videoItem => {   
+        if (videoItem.site !== "YouTube") return; // Skip unsupported platforms for now
+    
+        const card = document.createElement('div');
+        card.className = 'video-card'; 
+    
+        // 1. Set up a lightweight thumbnail placeholder using YouTube's image servers
+        card.innerHTML = `
+            <div class="video-player-container" data-video-key="${videoItem.key}">
+                <img class="video-thumbnail" src="https://img.youtube.com/vi/${videoItem.key}/maxresdefault.jpg" alt="${videoItem.name}">
+                <div class="play-button-overlay">▶</div>
+            </div>
+            <div class="video-meta">
+                <h3 class="video-title"> ${videoItem.name} </h3>
+                <span class="video-type badge">| ${videoItem.type}</span>
+            </div>
+        `;
+    
+        // 2. Add an event listener so the heavy video ONLY loads when someone clicks the card
+        card.querySelector('.video-player-container').addEventListener('click', function() {
+            const videoKey = this.getAttribute('data-video-key');
+            
+            // Swap the image out for the live iframe with autoplay safely turned on here
+            this.innerHTML = `
+                <iframe 
+                    src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
+                    title="Video Player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>`;
+        });
+    
+        videoContainer.appendChild(card);
     });

@@ -19,7 +19,7 @@ try {
     document.getElementById('details-tagline').textContent = movie.Tagline || '';
     document.getElementById('details-overview').textContent = movie.Overview;
     document.getElementById('details-date').textContent = movie.ReleaseDate;
-    document.getElementById('details-rating').textContent = movie.TMBDRating;
+    document.getElementById('details-rating').textContent = movie.TMDBRating;
 
     const backdropImg = document.getElementById('details-backdrop-banner');
     backdropImg.src = TMDB.GetImageUrl(movie.BackdropPath);
@@ -101,49 +101,47 @@ try {
     });
 
 
-/*const videoContainer = document.getElementById("video-scroll-container");
+const videoContainer = document.getElementById("video-scroll-container");
 videoContainer.innerHTML = '';
 
-const videos = await TMDB.GetVideosByMovieID(movieID);
-
-videos[0]
+const videos = await TMDB.GetVideosByMovie(movieID);
 
 videos.forEach(videoItem => {   
+    if (videoItem.site !== "YouTube") return; // Skip unsupported platforms for now
 
     const card = document.createElement('div');
+    card.className = 'video-card'; 
 
-    card.className = 'video-card';
-
-
-    let playerHTML;
-    if (videoItem.site === "YouTube")
-    {
-        // Construct standard YouTube embed with autoplay enabled & muted to comply with modern browser rules
-       playerHTML = `
-        <iframe 
-            src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
-            title="${videoItem.name}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-            
-        iframe>
-        `;
-    } else {
-        playerHTML = `<p style="padding:20px;">Unsupported streaming platform: ${data.site}</p>`;
-    }
-
+    // 1. Set up a lightweight thumbnail placeholder using YouTube's image servers
     card.innerHTML = `
-          <div id="video-player-container" class="video-player-container"></div>
-          <div class="video-meta">
-            <h2 id="video-title">Loading}</h2>
-            <span id="video-type" class="badge">uh</span>
-          </div>
+        <div class="video-player-container" data-video-key="${videoItem.key}">
+            <img class="video-thumbnail" src="https://img.youtube.com/vi/${videoItem.key}/maxresdefault.jpg" alt="${videoItem.name}">
+            <div class="play-button-overlay">▶</div>
+        </div>
+        <div class="video-meta">
+            <h3 class="video-title"> ${videoItem.name} </h3>
+            <span class="video-type badge">| ${videoItem.type}</span>
+        </div>
     `;
 
+    // 2. Add an event listener so the heavy video ONLY loads when someone clicks the card
+    card.querySelector('.video-player-container').addEventListener('click', function() {
+        const videoKey = this.getAttribute('data-video-key');
+        
+        // Swap the image out for the live iframe with autoplay safely turned on here
+        this.innerHTML = `
+            <iframe 
+                src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
+                title="Video Player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>`;
+    });
+
     videoContainer.appendChild(card);
-});*/
+});
+
 
 } catch (error) {
     console.error("Error loading movie details:", error);
