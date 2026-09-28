@@ -368,7 +368,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 /* Container styling for horizontal scrolling */
-#images-scroll-container {
+.images-scroll-container {
   display: flex;
   gap: 16px;
   overflow-x: auto;
@@ -445,7 +445,7 @@ body {
 .video-card {
   flex: 0 0 auto;
   width: 400px;
-  margin: 40px auto;
+  /*margin: 40px auto;*/
   /*background-color: #1e1e1e;*/
   /*border-radius: 12px;*/
   overflow: hidden;

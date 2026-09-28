@@ -54,8 +54,8 @@ try {
 
 
     // Clear any existing boilerplate HTML inside the container
-    const imagesContainer = document.getElementById("images-scroll-container");
-    imagesContainer.innerHTML = '';
+    const backdropsContainer = document.getElementById("backdrops-scroll-container");
+    backdropsContainer.innerHTML = '';
 
     const images = await TMDB.GetImagesForMovie(movieID)
 
@@ -70,8 +70,11 @@ try {
             </div>
         `;
 
-        imagesContainer.appendChild(card);
+        backdropsContainer.appendChild(card);
     });
+
+    const postersContainer = document.getElementById("posters-scroll-container");
+    postersContainer.innerHTML = '';
 
     images.Posters.forEach(imageItem => {
         const card = document.createElement('div');
@@ -83,9 +86,11 @@ try {
             </div>
         `;
 
-        imagesContainer.appendChild(card);
+        postersContainer.appendChild(card);
     });
 
+    const logosContainer = document.getElementById("logos-scroll-container");
+    logosContainer.innerHTML = '';
 
     images.Logos.forEach(imageItem => {
         const card = document.createElement('div');
@@ -97,7 +102,7 @@ try {
             </div>
         `;
 
-        imagesContainer.appendChild(card);
+        logosContainer.appendChild(card);
     });
 
 
