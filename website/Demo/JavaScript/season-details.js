@@ -25,28 +25,53 @@ document.getElementById('season-details-overview').textContent = season.Overview
 document.getElementById('season-details-date').textContent = season.AirDate;
 document.getElementById('season-details-rating').textContent = season.TMDBRating;
 
+const credits = await TMDB.GetCreditsByShow(showID);
+      
+// Cast
 const castContainer = document.getElementById("season-cast-scroll-container");
 castContainer.innerHTML = "";
-            const credits = await TMDB.GetCreditsBySeason(showID, seasonNumber);
-        
-            // 4. Loop through each actor in your database list
-            credits.forEach(credit => {
-                // Create a brand new div element for the card
-                const card = document.createElement("div");
-                card.classList.add("cast-card");
-
-                // Fill the card with the exact HTML template structure
-                card.innerHTML = `
-                    <div class="cast-image-circle">
-                        <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
-                    </div>
-                    <div class="cast-actor-name">${credit.Name}</div>
-                    <div class="cast-character-role">${credit.Character}</div>
-                `;
-
-                // Stick the finished card right into the container
-                castContainer.appendChild(card);
-            });
+              
+        // 4. Loop through each actor in your database list
+        credits.Cast.forEach(credit => {
+                  // Create a brand new div element for the card
+                  const card = document.createElement("div");
+                  card.classList.add("cast-card");
+  
+                  // Fill the card with the exact HTML template structure
+                  card.innerHTML = `
+                      <div class="cast-image-circle">
+                          <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
+                      </div>
+                      <div class="cast-actor-name">${credit.Name}</div>
+                      <div class="cast-character-role">${credit.Character}</div>
+                  `;
+  
+                  // Stick the finished card right into the container
+                  castContainer.appendChild(card);
+              });
+  
+  // Crew
+  const crewContainer = document.getElementById("season-crew-scroll-container");
+  crewContainer.innerHTML = "";
+          
+              // 4. Loop through each actor in your database list
+              credits.Crew.forEach(credit => {
+                  // Create a brand new div element for the card
+                  const card = document.createElement("div");
+                  card.classList.add("cast-card");
+  
+                  // Fill the card with the exact HTML template structure
+                  card.innerHTML = `
+                      <div class="cast-image-circle">
+                          <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
+                      </div>
+                      <div class="cast-actor-name">${credit.Name}</div>
+                      <div class="cast-character-role">${credit.Job}</div>
+                  `;
+  
+                  // Stick the finished card right into the container
+                  crewContainer.appendChild(card);
+              });
 
  const episodeContainer = document.getElementById('episode-scroll-container');
   

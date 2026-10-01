@@ -24,34 +24,53 @@ try {
     const backdropImg = document.getElementById('details-backdrop-banner');
     backdropImg.src = TMDB.GetImageUrl(movie.BackdropPath);
 
+    const credits = await TMDB.GetCreditsByMovie(movieID);
+   
+    // Cast
+    const castContainer = document.getElementById("movie-cast-scroll-container");
     castContainer.innerHTML = "";
-    const credits = await TMDB.GetCreditsByMovie(movie.ID, 'w1000');
-        
-    // 4. Loop through each actor in your database list
-    credits.forEach(credit => {
-        // Create a brand new div element for the card
-        const card = document.createElement("div");
-        card.classList.add("cast-card");
-        // Fill the card with the exact HTML template structure
-        card.innerHTML = `
-            <div class="cast-image-circle">
-                <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
-            </div>
-            <div class="cast-actor-name">${credit.Name}</div>
-            <div class="cast-character-role">${credit.Character}</div>
-        `;
-
-        // Stick the finished card right into the container
-        castContainer.appendChild(card);
-    });        
-
-
-
-    castContainer.addEventListener("wheel", (event) => {
-                event.preventDefault(); 
-                castContainer.scrollLeft += event.deltaY;
-            });
-
+               
+               // 4. Loop through each actor in your database list
+               credits.Cast.forEach(credit => {
+                   // Create a brand new div element for the card
+                   const card = document.createElement("div");
+                   card.classList.add("cast-card");
+   
+                   // Fill the card with the exact HTML template structure
+                   card.innerHTML = `
+                       <div class="cast-image-circle">
+                           <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
+                       </div>
+                       <div class="cast-actor-name">${credit.Name}</div>
+                       <div class="cast-character-role">${credit.Character}</div>
+                   `;
+   
+                   // Stick the finished card right into the container
+                   castContainer.appendChild(card);
+               });
+   
+   // Crew
+   const crewContainer = document.getElementById("movie-crew-scroll-container");
+   crewContainer.innerHTML = "";
+           
+               // 4. Loop through each actor in your database list
+               credits.Crew.forEach(credit => {
+                   // Create a brand new div element for the card
+                   const card = document.createElement("div");
+                   card.classList.add("cast-card");
+   
+                   // Fill the card with the exact HTML template structure
+                   card.innerHTML = `
+                       <div class="cast-image-circle">
+                           <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
+                       </div>
+                       <div class="cast-actor-name">${credit.Name}</div>
+                       <div class="cast-character-role">${credit.Job}</div>
+                   `;
+   
+                   // Stick the finished card right into the container
+                   crewContainer.appendChild(card);
+               });
 
     // Clear any existing boilerplate HTML inside the container
     const backdropsContainer = document.getElementById("backdrops-scroll-container");
@@ -106,47 +125,46 @@ try {
     });
 
 
-const videoContainer = document.getElementById("video-scroll-container");
-videoContainer.innerHTML = '';
+    const videoContainer = document.getElementById("video-scroll-container");
+    videoContainer.innerHTML = '';
 
-const videos = await TMDB.GetVideosByMovie(movieID);
+    const videos = await TMDB.GetVideosByMovie(movieID);
 
-videos.forEach(videoItem => {   
-    if (videoItem.site !== "YouTube") return; // Skip unsupported platforms for now
+    videos.forEach(videoItem => {   
+        if (videoItem.site !== "YouTube") return; // Skip unsupported platforms for now
 
-    const card = document.createElement('div');
-    card.className = 'video-card'; 
+        const card = document.createElement('div');
+        card.className = 'video-card'; 
 
-    // 1. Set up a lightweight thumbnail placeholder using YouTube's image servers
-    card.innerHTML = `
-        <div class="video-player-container" data-video-key="${videoItem.key}">
-            <img class="video-thumbnail" src="https://img.youtube.com/vi/${videoItem.key}/maxresdefault.jpg" alt="${videoItem.name}">
-            <div class="play-button-overlay">▶</div>
-        </div>
-        <div class="video-meta">
-            <h3 class="video-title"> ${videoItem.name} </h3>
-            <span class="video-type badge">| ${videoItem.type}</span>
-        </div>
-    `;
+        // 1. Set up a lightweight thumbnail placeholder using YouTube's image servers
+        card.innerHTML = `
+            <div class="video-player-container" data-video-key="${videoItem.key}">
+                <img class="video-thumbnail" src="https://img.youtube.com/vi/${videoItem.key}/maxresdefault.jpg" alt="${videoItem.name}">
+                <div class="play-button-overlay">▶</div>
+            </div>
+            <div class="video-meta">
+                <h3 class="video-title"> ${videoItem.name} </h3>
+                <span class="video-type badge">| ${videoItem.type}</span>
+            </div>
+        `;
 
-    // 2. Add an event listener so the heavy video ONLY loads when someone clicks the card
-    card.querySelector('.video-player-container').addEventListener('click', function() {
-        const videoKey = this.getAttribute('data-video-key');
-        
-        // Swap the image out for the live iframe with autoplay safely turned on here
-        this.innerHTML = `
-            <iframe 
-                src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
-                title="Video Player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>`;
+        // 2. Add an event listener so the heavy video ONLY loads when someone clicks the card
+        card.querySelector('.video-player-container').addEventListener('click', function() {
+            const videoKey = this.getAttribute('data-video-key');
+            
+            // Swap the image out for the live iframe with autoplay safely turned on here
+            this.innerHTML = `
+                <iframe 
+                    src="https://youtube.com/embed/${videoItem.key}?autoplay=1&mute=1&rel=0" 
+                    title="Video Player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>`;
+        });
+
+        videoContainer.appendChild(card);
     });
-
-    videoContainer.appendChild(card);
-});
-
 
 } catch (error) {
     console.error("Error loading movie details:", error);

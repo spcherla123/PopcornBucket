@@ -439,11 +439,24 @@ export async function GetCreditsByMovie(InMovieID)
         const response = await fetch(url, OPTIONS);
         const data = await response.json();
 
-        const result = data.cast.map(item => ({
-           Name: item.name,
-           Character: item.character,
-           ProfilePath: item.profile_path
-        }));
+        const result = {
+            
+            Crew: data.crew.map(item => ({
+                Name: item.name,
+                Job: item.job,
+                KnownForDepartment: item.known_for_department,
+                ProfilePath: item.profile_path
+            })),
+
+            Cast: data.cast.map(item => ({
+                IsAdult: item.adult,
+                Gender: item.gender,
+                ID: item.id,
+                Name: item.name,
+                Character: item.character,
+                ProfilePath: item.profile_path
+            })),
+        };
 
         return result;
        
@@ -471,11 +484,24 @@ export async function GetCreditsByShow(InTVShowID)
         const response = await fetch(url, OPTIONS);
         const data = await response.json();
 
-        const result = data.cast.map(item => ({
-           Name: item.name,
-           Character: item.character,
-           ProfilePath: item.profile_path
-        }));
+        const result = {
+            
+            Crew: data.crew.map(item => ({
+                Name: item.name,
+                Job: item.job,
+                KnownForDepartment: item.known_for_department,
+                ProfilePath: item.profile_path
+            })),
+
+            Cast: data.cast.map(item => ({
+                IsAdult: item.adult,
+                Gender: item.gender,
+                ID: item.id,
+                Name: item.name,
+                Character: item.character,
+                ProfilePath: item.profile_path
+            })),
+        };
 
         return result;
        
@@ -498,11 +524,24 @@ export async function GetCreditsBySeason(InTVShowID, InSeasonNumber)
         const response = await fetch(url, OPTIONS);
         const data = await response.json();
 
-        const result = data.cast.map(item => ({
-           Name: item.name,
-           Character: item.character,
-           ProfilePath: item.profile_path
-        }));
+        const result = {
+            
+            Crew: data.crew.map(item => ({
+                Name: item.name,
+                Job: item.job,
+                KnownForDepartment: item.known_for_department,
+                ProfilePath: item.profile_path
+            })),
+
+            Cast: data.cast.map(item => ({
+                IsAdult: item.adult,
+                Gender: item.gender,
+                ID: item.id,
+                Name: item.name,
+                Character: item.character,
+                ProfilePath: item.profile_path
+            })),
+        };
 
         return result;
        
