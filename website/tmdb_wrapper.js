@@ -276,6 +276,54 @@ export async function GetMoviesBySearch(InSearch, InAdultIncluded = true) {
      }
 }
 
+/** 
+ * Returns the movies filtered by a search keyword.
+ * 
+ * @async
+ * @function GetShowsBySearch
+ * @param {string} InSearch - The search query/keyword.
+ * @param {boolean} [InAdultIncluded=true] - Whether to include adult/NSFW content in search results.
+ * @returns {Promise<Array<{
+ *   ID: number,
+ *   Title: string,
+ *   PosterPath: string|null
+ * }>|undefined>} A promise that resolves to an array of matching movies, or undefined if an error occurs.
+ */
+export async function GetShowsBySearch(InSearch, InYear = -1, InFirstAirDate = -1, InAdultIncluded = true) {
+    try {
+
+        let searchStr = `${BASE_URL}/search/tv?query=${InSearch}`;
+
+        if(InFirstAirDate >= 1000 && InFirstAirDate <= 9999) {
+            searchStr += `&first_air_date_year=${InFirstAirDate}`;
+        }
+
+        searchStr += `&include_adult=${InAdultIncluded}`;
+        
+        searchStr += `&language=en-US&page=1`;
+
+        if(InYear >= 1000 && InYear <= 9999) {
+            searchStr + `&year=${InYear}`;
+        }
+
+        console.info(searchStr);
+
+        const url = searchStr;
+        const response = await fetch(url, OPTIONS)
+        const data = await response.json();
+
+        const result = data.results.map(item => ({
+           ID: item.id,
+           Name: item.name,
+           PosterPath: item.poster_path
+        }));
+
+        return result;
+     } catch (error) {
+        console.error("Oops! Couldn't load the movies by search:", error);
+     }
+}
+
 /**
  * Fetches raw TMDB video data tracks (trailers, teasers, featurettes) for a specific movie.
  * 

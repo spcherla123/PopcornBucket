@@ -5,6 +5,9 @@ TMDB.Authenticate();
 // 1. Find the HTML elements using their IDs
 const textBox = document.getElementById("search");
 const button = document.getElementById("myButton");
+
+const showTextBox = document.getElementById("show-search");
+const showButton = document.getElementById("show-button");
 //const resultParagraph = document.getElementById("result");
 
 // 2. Wait for the user to click the button
@@ -14,6 +17,17 @@ button.addEventListener("click", function() {
     
     // 4. Print it on the screen
     DisplaySearchResults(userText);
+});
+
+//const resultParagraph = document.getElementById("result");
+
+// 2. Wait for the user to click the button
+showButton.addEventListener("click", function() {
+    // 3. Get the text from the box using .value
+    const userText = showTextBox.value;
+    
+    // 4. Print it on the screen
+    DisplayShowSearchResults(userText);
 });
 
 async function DisplaySearchResults(InSearchText) {
@@ -37,6 +51,39 @@ async function DisplaySearchResults(InSearchText) {
             <a href="movie-details.html?id=${movie.ID}" class="movie-link">
                 <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
                 <h3 class="movie-title">${movie.Title}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error("Oops! Couldn't load the popular movies:", error);
+    }
+
+}
+
+async function DisplayShowSearchResults(InSearchText) {
+        // Search
+    try {
+        const movies = await TMDB.GetShowsBySearch(InSearchText);
+
+        const grid = document.getElementById('show-results-grid');
+        grid.innerHTML = ''; // Clear out any old text
+
+        movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
+        
+        movieCard.innerHTML = `
+            <a href="tv-details.html?id=${movie.ID}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.Name} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.Name}</h3>
             </a>
         `;
 
@@ -114,28 +161,3 @@ try {
 } catch (error) {
     console.error("Oops! Couldn't load the popular movies:", error);
 }
-
-try {
-    const movies = await TMDB.GetPopularMovies();
-
-    movies.forEach(movie => {
-        
-        async function PrintDetails() {
-            const details = await TMDB.GetMovieDetails(movie.ID);
-            console.info(details.Title);
-            console.info(details.Tagline);
-            console.info(details.Overview);
-            console.info(details.TMDBRating);
-            console.info(details.Runtime);
-            console.info(details.ReleaseDate);
-            console.info(details.PosterPath);
-            console.info(details.BackdropPath);
-        }
-
-        PrintDetails();
-
-    });
-} catch (error) {
-    console.error("Oops! Couldn't load the popular movies:", error);
-}
-

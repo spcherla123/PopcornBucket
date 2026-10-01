@@ -24,7 +24,7 @@ try {
     const backdropImg = document.getElementById('details-backdrop-banner');
     backdropImg.src = TMDB.GetImageUrl(tvShow.BackdropPath);
             
-     const credits = await TMDB.GetCreditsByShow(showID);
+    const credits = await TMDB.GetCreditsByShow(showID);
       
     // Cast
     const castContainer = document.getElementById("show-cast-scroll-container");
@@ -49,6 +49,11 @@ try {
                       castContainer.appendChild(card);
                   });
       
+    castContainer.addEventListener("wheel", (event) => {
+            event.preventDefault(); 
+            castContainer.scrollLeft += event.deltaY;
+        });
+
       // Crew
       const crewContainer = document.getElementById("show-crew-scroll-container");
       crewContainer.innerHTML = "";
@@ -71,7 +76,11 @@ try {
                       // Stick the finished card right into the container
                       crewContainer.appendChild(card);
                   });
-   
+
+     crewContainer.addEventListener("wheel", (event) => {
+            event.preventDefault(); 
+            crewContainer.scrollLeft += event.deltaY;
+        });
 
         
   
@@ -110,10 +119,7 @@ try {
 }
 
 
-castContainer.addEventListener("wheel", (event) => {
-            event.preventDefault(); 
-            castContainer.scrollLeft += event.deltaY;
-        });
+
 
     // Clear any existing boilerplate HTML inside the container
     const backdropsContainer = document.getElementById("backdrops-scroll-container");
