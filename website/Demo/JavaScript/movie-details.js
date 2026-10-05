@@ -38,11 +38,13 @@ try {
    
                    // Fill the card with the exact HTML template structure
                    card.innerHTML = `
+                   <a href="person-details.html?id=${credit.ID}" class="movie-link">
                        <div class="cast-image-circle">
                            <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
                        </div>
                        <div class="cast-actor-name">${credit.Name}</div>
                        <div class="cast-character-role">${credit.Character}</div>
+                    </a>
                    `;
    
                    // Stick the finished card right into the container
@@ -61,11 +63,14 @@ try {
    
                    // Fill the card with the exact HTML template structure
                    card.innerHTML = `
+                   <a href="person-details.html?id=${credit.ID}" class="movie-link">
+
                        <div class="cast-image-circle">
                            <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
                        </div>
                        <div class="cast-actor-name">${credit.Name}</div>
                        <div class="cast-character-role">${credit.Job}</div>
+                    </a>
                    `;
    
                    // Stick the finished card right into the container

@@ -199,6 +199,42 @@ export async function GetSeasonDetails(InShowID, InSeasonNumber) {
     }
 }
 
+function GetGenderFromNumber(InNumber) {
+    switch(InNumber) {
+        case 0: return "Not set / not specified"; 
+        case 1: return "Female";
+        case 2: return "Male";
+        case 3: return "Non-binary";
+    }
+}
+
+
+export async function GetPersonDetails(InPersonID) {
+    try {
+        const detailsUrl = `${BASE_URL}/person/${InPersonID}?language=en-US`;
+        const response = await fetch(detailsUrl, OPTIONS);
+
+        const item = await response.json();
+
+        return {
+           ID: item.id,
+           Name: item.name,
+           AlsoKnownAs: item.also_known_as,
+           ProfilePath: item.profile_path,
+           Biography: item.biography,
+           Birthday: item.birthday,
+           Deathday: item.deathday,
+           Gender: GetGenderFromNumber(item.gender),
+           PlaceOfBirth: item.place_of_birth,
+           KnownForDepartment: item.known_for_department
+        
+        };
+
+    } catch (error) {
+        console.error("Error! Couldn't load person details:", error);
+    }
+}
+
 /**
  * Fetches and formats the details of a single specific TV show episode.
  * 
@@ -276,6 +312,36 @@ export async function GetMoviesBySearch(InSearch, InAdultIncluded = true) {
      }
 }
 
+/** 
+ * Returns the movies filtered by a search keyword.
+ * 
+ * @async
+ * @function GetPeopleBySearch
+ * @param {string} InSearch - The search query/keyword.
+ * @param {boolean} [InAdultIncluded=true] - Whether to include adult/NSFW content in search results.
+ * @returns {Promise<Array<{
+ *   ID: number,
+ *   Title: string,
+ *   PosterPath: string|null
+ * }>|undefined>} A promise that resolves to an array of matching movies, or undefined if an error occurs.
+ */
+export async function GetPersonBySearch(InSearch, InAdultIncluded = true) {
+    try {
+        const url = `${BASE_URL}/search/person?query=${InSearch}&include_adult=${InAdultIncluded}&language=en-US&page=1`; 
+        const response = await fetch(url, OPTIONS)
+        const data = await response.json();
+
+        const result = data.results.map(item => ({
+           ID: item.id,
+           Name: item.name,
+           ProfilePath: item.profile_path
+        }));
+
+        return result;
+     } catch (error) {
+        console.error("Oops! Couldn't load the movies by search:", error);
+     }
+    }
 /** 
  * Returns the movies filtered by a search keyword.
  * 

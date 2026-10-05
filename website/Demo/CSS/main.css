@@ -40,6 +40,13 @@ body
   font-family: sans-serif;
 }
 
+#details-title {
+  color: #ffffff;
+  padding-top: 8px;
+  margin: 0;
+  font-family: sans-serif;
+}
+
 /* Sets the max size of the details page */
 #details-container 
 { 
@@ -274,6 +281,8 @@ body
   
 }
 
+
+
 #season-details-date-rating-runtime-grid { 
   display: flex; 
   gap: 20px; 
@@ -351,6 +360,11 @@ body
   align-items: center;
   font-size: 12px;
   color: #666;
+}
+
+#details-aka-container {
+  color: #666;
+  padding-bottom: 12px;
 }
 
 .episode-rating {
@@ -487,6 +501,26 @@ h3 {
   font-weight: bold;
 }
 
+.details-title-container {
+  display: inline-block;
+  background-color: #2a2a2a;
+  color: #ffa41c;
+  margin-top: -10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  width: 100%;
+  position: relative;
+  z-index: 1; 
+}
+
+#details-known-for 
+{
+  padding-top: 12px;
+  color: #ffa41c;
+  
+}
+
 .video-thumbnail {
     width: 100%;
     display: block;
@@ -505,3 +539,38 @@ h3 {
     color: white;
     text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
 }
+
+#person-details-banner-container {
+  display: grid;
+  place-items: center;
+  max-height: 450px; /* Limits how tall the banner can get */
+  overflow: hidden;
+  position: relative;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  
+}
+
+#person-details-backdrop-banner {
+  aspect-ratio: 2 / 3;
+  height: 450px;
+  object-fit: cover; /* Crops the image perfectly without stretching it */
+  object-position: center top; /* Keeps the focus on the upper/middle part of the picture */
+  display: block;
+  z-index: 1;
+  
+}
+
+#person-details-blur-backdrop-banner {
+  
+  width: 100%;
+  position: absolute;
+  height: 450px;
+  object-fit: cover; /* Crops the image perfectly without stretching it */
+  object-position: center top; /* Keeps the focus on the upper/middle part of the picture */
+  display: block;
+  filter: blur(50px);
+  background: linear-gradient(to right, #1a2a3a, #3a4a5a);
+  
+}
+

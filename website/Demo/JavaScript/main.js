@@ -8,6 +8,9 @@ const button = document.getElementById("myButton");
 
 const showTextBox = document.getElementById("show-search");
 const showButton = document.getElementById("show-button");
+
+const personTextBox = document.getElementById("person-search");
+const personButton = document.getElementById("person-button");
 //const resultParagraph = document.getElementById("result");
 
 // 2. Wait for the user to click the button
@@ -28,6 +31,15 @@ showButton.addEventListener("click", function() {
     
     // 4. Print it on the screen
     DisplayShowSearchResults(userText);
+});
+
+// 2. Wait for the user to click the button
+personButton.addEventListener("click", function() {
+    // 3. Get the text from the box using .value
+    const userText = personTextBox.value;
+    
+    // 4. Print it on the screen
+    DisplayPersonSearchResults(userText);
 });
 
 async function DisplaySearchResults(InSearchText) {
@@ -51,6 +63,39 @@ async function DisplaySearchResults(InSearchText) {
             <a href="movie-details.html?id=${movie.ID}" class="movie-link">
                 <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
                 <h3 class="movie-title">${movie.Title}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error("Oops! Couldn't load the popular movies:", error);
+    }
+
+}
+
+async function DisplayPersonSearchResults(InSearchText) {
+        // Search
+    try {
+        const movies = await TMDB.GetPersonBySearch(InSearchText);
+
+        const grid = document.getElementById('results-grid');
+        grid.innerHTML = ''; // Clear out any old text
+
+        movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.ProfilePath);
+        
+        movieCard.innerHTML = `
+            <a href="person-details.html?id=${movie.ID}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.Name} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.Name}</h3>
             </a>
         `;
 
