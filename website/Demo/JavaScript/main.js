@@ -60,7 +60,7 @@ async function DisplaySearchResults(InSearchText) {
         const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
         
         movieCard.innerHTML = `
-            <a href="movie-details.html?id=${movie.ID}" class="movie-link">
+            <a href="movie-details.html?movie=${movie.ID}" class="movie-link">
                 <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
                 <h3 class="movie-title">${movie.Title}</h3>
             </a>
@@ -80,7 +80,7 @@ async function DisplayPersonSearchResults(InSearchText) {
     try {
         const movies = await TMDB.GetPersonBySearch(InSearchText);
 
-        const grid = document.getElementById('results-grid');
+        const grid = document.getElementById('person-results-grid');
         grid.innerHTML = ''; // Clear out any old text
 
         movies.forEach(movie => {
@@ -126,7 +126,7 @@ async function DisplayShowSearchResults(InSearchText) {
         const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
         
         movieCard.innerHTML = `
-            <a href="tv-details.html?id=${movie.ID}" class="movie-link">
+            <a href="media-details.html?show=${movie.ID}" class="movie-link">
                 <img src="${backdropUrl}" alt="${movie.Name} Backdrop" class="movie-backdrop-img">
                 <h3 class="movie-title">${movie.Name}</h3>
             </a>
@@ -161,7 +161,7 @@ try {
 
         // 3. Inject the wide backdrop image and the title underneath
         movieCard.innerHTML = `
-            <a href="movie-details.html?id=${movie.ID}" class="movie-link">
+            <a href="media-details.html?movie=${movie.ID}" class="movie-link">
               <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
               <h3 class="movie-title">${movie.Title}</h3>
             </a>
@@ -190,11 +190,16 @@ try {
         // use a fallback image in case the movie doesn't have a backdrop
         const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
 
-        const htmlPage = movie.MediaType == 'movie' ? 'movie-details' : 'tv-details';
-
+        let htmlPage = "";
+        if(movie.MediaType == 'movie') {
+            htmlPage =`media-details.html?movie=${movie.ID}`
+        }
+        else if(movie.MediaType == 'tv') {
+            htmlPage =`media-details.html?show=${movie.ID}`
+        }
         // 3. Inject the wide backdrop image and the title underneath
         movieCard.innerHTML = `
-            <a href="${htmlPage}.html?id=${movie.ID}" class="movie-link">
+            <a href="${htmlPage}" class="movie-link">
                 <img src="${backdropUrl}" alt="${movie.TitleOrName} Backdrop" class="movie-backdrop-img">
                 <h3 class="movie-title">${movie.TitleOrName}</h3>
             </a>

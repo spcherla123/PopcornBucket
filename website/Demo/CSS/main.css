@@ -250,7 +250,7 @@ body
   margin: 0 auto; 
 }
 
-#season-details-banner-container {
+.season-details-banner-container {
   display: grid;
   place-items: center;
   max-height: 450px; /* Limits how tall the banner can get */
