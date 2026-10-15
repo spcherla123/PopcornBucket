@@ -176,7 +176,7 @@ else if(showID)
     images = await TMDB.GetImagesForShow(showID);
     videos = await TMDB.GetVideosByShow(showID);
 
-    // Clear any existing boilerplate HTML inside the container
+    // Clear any existing HTML inside the container
    
     seasonContainer.innerHTML = '';
     
@@ -215,6 +215,20 @@ else if(showID)
     });
 }
 
+let backFromCreditsInfo;
+if(movieID) {
+    backFromCreditsInfo =  `movie=${movieID}`;
+}
+else if(episodeNumber) {
+    backFromCreditsInfo =  `show=${showID}&season=${seasonNumber}&episode=${episodeNumber}`;
+}
+else if(seasonNumber) {
+    backFromCreditsInfo =  `show=${showID}&season=${seasonNumber}`;
+}
+else if(showID) {
+    backFromCreditsInfo =  `show=${showID}`;
+}
+
 // Cast
 const castLabel = document.getElementById("cast-label");
 const castContainer = document.getElementById("cast-scroll-container");
@@ -233,7 +247,7 @@ castContainer.innerHTML = "";
 
         // Fill the card with the exact HTML template structure
         card.innerHTML = `
-        <a href="person-details.html?id=${credit.ID}&show_id=${showID}&season=${seasonNumber}&episode=${episodeNumber}" class="movie-link">
+        <a href="person-details.html?id=${credit.ID}&${backFromCreditsInfo}" class="movie-link">
             <div class="cast-image-circle">
                 <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
             </div>
@@ -264,7 +278,7 @@ credits.Crew.forEach(credit => {
 
     // Fill the card with the exact HTML template structure
     card.innerHTML = `
-    <a href="person-details.html?id=${credit.ID}&show_id=${showID}&season=${seasonNumber}&episode=${episodeNumber}" class="movie-link">
+    <a href="person-details.html?id=${credit.ID}&${backFromCreditsInfo}" class="movie-link">
         <div class="cast-image-circle">
             <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
         </div>
@@ -297,7 +311,7 @@ if(episodeNumber) {
 
         // Fill the card with the exact HTML template structure
         card.innerHTML = `
-        <a href="person-details.html?id=${credit.ID}&show_id=${showID}&season=${seasonNumber}&episode=${episodeNumber}" class="movie-link">
+        <a href="person-details.html?id=${credit.ID}&${backFromCreditsInfo}" class="movie-link">
             <div class="cast-image-circle">
                 <img src="${TMDB.GetImageUrl(credit.ProfilePath)}" alt="${credit.Name}">
             </div>

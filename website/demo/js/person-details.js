@@ -3,8 +3,8 @@
 // 1. Grab the Movie ID from the browser's URL bar
 const urlParams = new URLSearchParams(window.location.search);
 const personID = urlParams.get('id');
-const movieID = urlParams.get('movie_id');
-const showID = urlParams.get('show_id');
+const movieID = urlParams.get('movie');
+const showID = urlParams.get('show');
 const seasonNumber = urlParams.get('season');
 const episodeNumber = urlParams.get('episode');
 
@@ -18,16 +18,16 @@ const episodeNumber = urlParams.get('episode');
 const backButton = document.getElementById('person-back-to-page-button');
 
 if(movieID) {
-    backButton.href =  `movie-details.html?id=${movieID}&type=movie`;
+    backButton.href =  `media-details.html?movie=${movieID}`;
 }
 else if(episodeNumber) {
-    backButton.href =  `episode-details.html?show=${showID}&season=${seasonNumber}&episode=${episodeNumber}`;
+    backButton.href =  `media-details.html?show=${showID}&season=${seasonNumber}&episode=${episodeNumber}`;
 }
 else if(seasonNumber) {
-    backButton.href =  `season-details.html?show=${showID}&season=${seasonNumber}`;
+    backButton.href =  `media-details.html?show=${showID}&season=${seasonNumber}`;
 }
 else if(showID) {
-    backButton.href =  `tv-details.html?id=${showID}`;
+    backButton.href =  `media-details.html?show=${showID}`;
 }
 
 try {
