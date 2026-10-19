@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Movie Watchlist</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: red;
+            color: white;
+            padding: 30px;
+        }
+
+        .watchlist-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .movie-card {
+            background-color: yellow;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            color: black;
+        }
+
+        .star-rating {
+            margin: 15px 0;
+        }
+
+            .star-rating .popcorn {
+                font-size: 1.8rem;
+                cursor: pointer;
+                display: inline-block;
+                filter: grayscale(100%);
+                opacity: 0.3;
+                transition: transform 0.1s ease, filter 0.2s ease, opacity 0.2s ease;
+                margin: 0 2px;
+            }
+
+                .star-rating .popcorn:hover {
+                    transform: scale(1.2);
+                    filter: none !important;
+                    opacity: 1 !important
+                }
+
+            .star-rating:has(.popcorn:hover) .popcorn:not(:hover):not(:hover ~ .popcorn) {
+                filter: none;
+                opacity: 1;
+            }
+
+            .star-rating .popcorn.active {
+                filter: none;
+                opacity: 1;
+            }
+
+
+        .reset-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 0 auto;
+        }
+
+            .reset-btn:hover {
+                background-color: #555;
+            }
+
+        .rating-display {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="watchlist-container">
+
+        <div class="movie-card" data-id="movie-123">
+            <h1>Movie 1</h1>
+            
+            <div class="star-rating">
+                <span class="popcorn" data-value="1">🍿</span>
+                <span class="popcorn" data-value="2">🍿</span>
+                <span class="popcorn" data-value="3">🍿</span>
+                <span class="popcorn" data-value="4">🍿</span>
+                <span class="popcorn" data-value="5">🍿</span>
+            </div>
+            <p class="rating-display">No Rating Yet</p>
+            <button class="reset-btn">Reset Rating</button>
+        </div>
+
+        <div class="movie-card" data-id="movie-321">
+            <h1>Movie 2</h1>
+            <div class="star-rating">
+                <span class="popcorn" data-value="1">🍿</span>
+                <span class="popcorn" data-value="2">🍿</span>
+                <span class="popcorn" data-value="3">🍿</span>
+                <span class="popcorn" data-value="4">🍿</span>
+                <span class="popcorn" data-value="5">🍿</span>
+            </div>
+            <p class="rating-display">No Rating Yet</p>
+            <button class="reset-btn">Reset Rating</button>
+        </div>
+    </div>
+
+    <script>
+                document.querySelectorAll('.movie-card').forEach(card => {
+                    const stars = card.querySelectorAll('.star-rating .popcorn');
+                    const movieID = card.getAttribute('data-id');
+                    const display = card.querySelector('.rating-display');
+                    const resetBtn = card.querySelector('.reset-btn');
+
+                   
+                    const savedRating = localStorage.getItem(`rating_${movieID}`);
+                    if (savedRating) {
+                        updateStars(stars, savedRating);
+                        display.textContent = `Rated: ${savedRating}/5`;
+                    }
+
+                   
+                    stars.forEach(star => {
+                        star.addEventListener('click', () => {
+                            const value = star.getAttribute('data-value');
+                            localStorage.setItem(`rating_${movieID}`, value);
+                            updateStars(stars, value);
+                            display.textContent = `Rated: ${value}/5`;
+                        });
+                    });
+
+                    
+                    resetBtn.addEventListener('click', () => {
+                        localStorage.removeItem(`rating_${movieID}`);
+                        updateStars(stars, 0);
+                        display.textContent = "No Rating Yet";
+                    });
+                });
+
+                function updateStars(stars, rating) {
+                    stars.forEach(star => {
+                        const val = star.getAttribute('data-value');
+
+                        if (val <= rating) {
+                            star.classList.add('active');
+                        } else {
+                            star.classList.remove('active');
+                        }
+                    });
+                }
+    </script>
+</body>
+</html>
