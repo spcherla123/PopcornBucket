@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media Details</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <div id="details-container">
+
+    <!-- 1) Button to return to main page -->
+    <a id="details-back" href="main.html" class="back-to-page-button">← Back</a>
+    
+    <!-- 2) Backround banner that is filled by JavaScript -->
+    <div id="details-banner-container">
+      <img id="details-backdrop-banner" src="" alt="Movie Backdrop">
+    </div>
+    
+    <div id="season-details-banner-container" class="season-details-banner-container">
+      <img id="season-details-blur-backdrop-banner" src="" alt="Movie Backdrop">
+      <img id="season-details-backdrop-banner" src="" alt="Movie Backdrop">
+    </div>
+
+    <!-- 3) Movie title that is filled by JavaScript -->
+    <h1 id="details-title">Loading...</h1>
+    <p id="details-tagline"></p>
+    
+    <!-- 4) Movie overview that is filled by JavaScript -->
+    <h3>Overview</h3>
+    <p id="details-overview"></p>
+
+    <!-- 5) Release date + Rating + RUntime that is filled by JavaScript -->
+    <div id="details-date-rating-runtime-grid">
+      <p><strong id="details-date-label">Release Date:</strong> <span id="details-date"></span></p>
+      <p><strong id="details-rating-label">Rating:</strong> ⭐ <span id="details-rating"></span></p>
+      <p><strong id="details-runtime-label">Runtime:</strong> <span id="details-runtime"></span></p>
+    </div>
+
+    <!-- Seasons section for TV shows Section -->
+    <h3 id="season-label"> Seasons</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="season-scroll-container"></div>
+
+     <!-- Seasons section for TV shows Section -->
+    <h3 id="episode-label">Episodes</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="episode-scroll-container"></div>
+    
+     <!-- 5) Cast and crew display that is filled by JavaScript -->
+    <h3 id="cast-label">Cast</h3>
+    <div id="cast-scroll-container" class="cast-scroll-container">
+      <!-- JavaScript will inject all the dynamic cast cards directly in here -->
+    </div>
+
+     <!-- 5) Cast and crew display that is filled by JavaScript -->
+    <h3 id="crew-label">Crew</h3>
+    <div id="crew-scroll-container" class="cast-scroll-container">
+      <!-- JavaScript will inject all the dynamic cast cards directly in here -->
+    </div>
+
+      <!-- 5) Cast and crew display that is filled by JavaScript -->
+    <h3 id="guest-label">Guest Stars</h3>
+    <div id="guest-stars-scroll-container" class="cast-scroll-container">
+      <!-- JavaScript will inject all the dynamic cast cards directly in here -->
+    </div>
+
+    <h3 id="video-label">Videos</h3>
+    <div id="video-scroll-container" class="video-scroll-container">
+      <div class="video-card">
+          <div id="video-player-container" class="video-player-container"></div>
+          <div class="video-meta">
+              <h2 id="video-title">Loading title...</h2>
+              <span id="video-type" class="badge">Type</span>
+          </div>
+      </div>
+    </div>
+
+
+    <h3 id="backdrops-label">Backdrops</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="backdrops-scroll-container" class="images-scroll-container"></div>
+     <h3 id="posters-label">Posters</h3>
+    <div id="posters-scroll-container" class="images-scroll-container"></div>
+     <h3 id="logos-label">Logos</h3>
+    <div id="logos-scroll-container" class="images-scroll-container"></div>
+
+      <!-- Images section for TV shows Section -->
+    <h3 id="images-label">Images</h3>
+    <!-- The target container where JavaScript will insert the dynamic cards -->
+    <div id="images-scroll-container" class="images-scroll-container"></div>
+
+  </div>
+
+<script src="../js/media-details.js", type="module"></script>
+</body>
+</html>

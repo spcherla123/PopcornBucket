@@ -1,0 +1,213 @@
+import * as TMDB from '../../tmdb_wrapper.js';
+
+TMDB.Authenticate();
+
+// 1. Find the HTML elements using their IDs
+const textBox = document.getElementById("search");
+const button = document.getElementById("myButton");
+
+const showTextBox = document.getElementById("show-search");
+const showButton = document.getElementById("show-button");
+
+const personTextBox = document.getElementById("person-search");
+const personButton = document.getElementById("person-button");
+//const resultParagraph = document.getElementById("result");
+
+// 2. Wait for the user to click the button
+button.addEventListener("click", function() {
+    // 3. Get the text from the box using .value
+    const userText = textBox.value;
+    
+    // 4. Print it on the screen
+    DisplaySearchResults(userText);
+});
+
+//const resultParagraph = document.getElementById("result");
+
+// 2. Wait for the user to click the button
+showButton.addEventListener("click", function() {
+    // 3. Get the text from the box using .value
+    const userText = showTextBox.value;
+    
+    // 4. Print it on the screen
+    DisplayShowSearchResults(userText);
+});
+
+// 2. Wait for the user to click the button
+personButton.addEventListener("click", function() {
+    // 3. Get the text from the box using .value
+    const userText = personTextBox.value;
+    
+    // 4. Print it on the screen
+    DisplayPersonSearchResults(userText);
+});
+
+async function DisplaySearchResults(InSearchText) {
+        // Search
+    try {
+        const movies = await TMDB.GetMoviesBySearch(InSearchText);
+
+        const grid = document.getElementById('results-grid');
+        grid.innerHTML = ''; // Clear out any old text
+
+        movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
+        
+        movieCard.innerHTML = `
+            <a href="movie-details.html?movie=${movie.ID}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.Title}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error("Oops! Couldn't load the popular movies:", error);
+    }
+
+}
+
+async function DisplayPersonSearchResults(InSearchText) {
+        // Search
+    try {
+        const movies = await TMDB.GetPersonBySearch(InSearchText);
+
+        const grid = document.getElementById('person-results-grid');
+        grid.innerHTML = ''; // Clear out any old text
+
+        movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.ProfilePath);
+        
+        movieCard.innerHTML = `
+            <a href="person-details.html?id=${movie.ID}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.Name} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.Name}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error("Oops! Couldn't load the popular movies:", error);
+    }
+
+}
+
+async function DisplayShowSearchResults(InSearchText) {
+        // Search
+    try {
+        const movies = await TMDB.GetShowsBySearch(InSearchText);
+
+        const grid = document.getElementById('show-results-grid');
+        grid.innerHTML = ''; // Clear out any old text
+
+        movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
+        
+        movieCard.innerHTML = `
+            <a href="media-details.html?show=${movie.ID}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.Name} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.Name}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error("Oops! Couldn't load the popular movies:", error);
+    }
+
+}
+
+
+// Popular movies
+try {       
+    const movies = await TMDB.GetPopularMovies();
+
+    const grid = document.getElementById('movie-grid');
+    grid.innerHTML = ''; // Clear out any old text
+
+    movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+
+        const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
+
+        // 3. Inject the wide backdrop image and the title underneath
+        movieCard.innerHTML = `
+            <a href="media-details.html?movie=${movie.ID}" class="movie-link">
+              <img src="${backdropUrl}" alt="${movie.Title} Backdrop" class="movie-backdrop-img">
+              <h3 class="movie-title">${movie.Title}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+    });
+} catch (error) {
+    console.error("Oops! Couldn't load the popular movies:", error);
+}
+
+// Trending
+try {
+    const movies = await TMDB.GetTrendingAll();
+
+    const grid = document.getElementById('trending-all-grid');
+    grid.innerHTML = ''; // Clear out any old text
+
+    movies.forEach(movie => {
+        // 1. Create a container card for the single movie
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+
+        // 2. Combine the base image URL with the backdrop path
+        // use a fallback image in case the movie doesn't have a backdrop
+        const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);
+
+        let htmlPage = "";
+        if(movie.MediaType == 'movie') {
+            htmlPage =`media-details.html?movie=${movie.ID}`
+        }
+        else if(movie.MediaType == 'tv') {
+            htmlPage =`media-details.html?show=${movie.ID}`
+        }
+        // 3. Inject the wide backdrop image and the title underneath
+        movieCard.innerHTML = `
+            <a href="${htmlPage}" class="movie-link">
+                <img src="${backdropUrl}" alt="${movie.TitleOrName} Backdrop" class="movie-backdrop-img">
+                <h3 class="movie-title">${movie.TitleOrName}</h3>
+            </a>
+        `;
+
+        // 4. Throw it onto your webpage grid
+        grid.appendChild(movieCard);
+    });
+} catch (error) {
+    console.error("Oops! Couldn't load the popular movies:", error);
+}
