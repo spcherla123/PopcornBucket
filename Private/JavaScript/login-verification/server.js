@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 
 // Set up the file paths
-const publicDirectory = path.join(__dirname, "../../../..", "public");
+const publicDirectory = path.join(__dirname, "../../../..", "public", "/JavaScript");
 const databasePath = path.join(__dirname, "popcorn.db");
 
 // Open or create the SQLite database
