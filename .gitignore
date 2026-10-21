@@ -1,0 +1,5 @@
+# Dependency directories (Never upload this folder; it is massive)
+Private/node_modules/
+
+# Optional: Ignore local databases (stops your SQLite data file from being uploaded)
+#*.db

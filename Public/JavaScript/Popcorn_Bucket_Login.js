@@ -117,7 +117,7 @@ loginForm.addEventListener("submit", async (event) => {
 
         // Change this to your actual destination page when it exists
         // This page must be created in your public folder
-        window.location.href = "temp.html";
+        window.location.href = "../HTML/PopcornBucket.html";
 
     } catch (error) {
         console.error("Login error:", error);
