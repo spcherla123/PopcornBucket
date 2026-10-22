@@ -16,15 +16,17 @@
     <input type="text" id="movieSearch" placeholder="Search movies..." onkeydown="searchMovies(event)">
 </div>  
 
-    <div class="SignUp"><a href="SignUp.html">Sign Up</a></div>
-    <div class="LogIn"><a href="LogIn.html">Log In</a></div>
+    <div class="SignUp"><a href="Popcorn_Bucket_Login.html">Sign Up</a></div>
+    <div class="LogIn"><a href="Popcorn_Bucket_Login.html">Log In</a></div>
     <div class="Home"><a href="PopcornBucket.html">Home</a></div>
     
    
-    <div class="MoviesPlaceholder">
-    <div class="outline-box">
-        <p style="font-size: 96px;">MOVIES PLACEHOLDER</p>
-    </div>
+    <h2>Trending All</h2>
+    <div id="trending-all-grid" class="movie-scroll-container"></div>
+    
+    <h2>Popular Moives</h2>
+    <div id="movie-grid" class="movie-scroll-container"></div>
+
 
     <div class="dropdown">
     <button class="menu-button">Menu ▼</button>
@@ -32,7 +34,7 @@
     <div class="dropdown-content">
         <a href="MyMovies.html">My Movies</a>
         <a href="MyWatchlist.html">My Watchlist</a>
-        <a href="MyGroups.html">My Groups</a>
+        <a href="communities-page.html">My Groups</a>
         <a href="Movie Rating.html">Ratings</a>
     </div>
     </div>
@@ -46,12 +48,13 @@
         <div class="dropdown-content">
             <a href="MyMovies.html">My Movies</a>
             <a href="MyWatchlist.html">My Watchlist</a>
-            <a href="MyGroups.html">My Groups</a>
-            <a href="Movie Ratings.html">Ratings</a>
+            <a href="communities-page.html">My Groups</a>
+            <a href="Movie Rating.html">Ratings</a>
         </div>
     </div>
     
-<script src="../JavaScript/Javascript.js"></script>
+<script src="../JavaScript/Javascript.js", type="module"></script>
+
 
 </body>
 </html>

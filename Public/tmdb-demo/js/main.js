@@ -1,4 +1,4 @@
-import * as TMDB from '../../tmdb_wrapper.js';
+import * as TMDB from '../JavaScript/tmdb_wrapper.js';
 
 TMDB.Authenticate();
 

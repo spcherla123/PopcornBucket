@@ -4,6 +4,12 @@ h1 {
     font-size: 70px;
 }
 
+h2 {
+    font-family: "Raleway", inter, arial;
+    text-align: center;
+    font-size: 50px;
+}
+
 p {
     font-family: "Raleway", inter, arial;
     text-align: center;
@@ -187,3 +193,70 @@ body {
     border: none;
     box-shadow: none;
 }
+
+/* [Daniel] */
+
+/* Arrange the cards into a responsive grid system */
+.movie-grid {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-scroll-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px;
+  margin-left: 0;
+  margin-right: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffc400;
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  box-shadow: 0 4px 20px rgba(27, 16, 0, 0.521);
+}
+
+/* Hides the scrollbar track for Chrome, Safari, and Opera */
+.movie-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual movie card container for home page */
+.movie-card {
+  flex: 0 0 auto; /* Prevents cards from shrinking */
+  width: 200px;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Force the backdrop into a proper wide cinematic aspect ratio */
+.movie-backdrop-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Style the title directly below the image */
+.movie-title {
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 12px;
+  margin: 0;
+  font-family: sans-serif;
+}
+/* ...[Daniel] */

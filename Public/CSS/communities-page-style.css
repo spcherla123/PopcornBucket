@@ -3,13 +3,13 @@ body {
     margin: 0;
     display: flex;
     height: 100vh;
-    background: yellow;
+    background: #ffc400;
     color: #fff;
 }
 
 #sidebar {
     width: 250px;
-    background: #ff0000;
+    background: #d62828;
     padding: 20px;
     border-right: 1px solid #333;
 }
@@ -28,7 +28,7 @@ body {
 }
 
     .group-item:hover, .group-item.active {
-        background: #E50914;
+        background: #d62828;
         color: #fff;
     }
 
@@ -48,7 +48,7 @@ body {
 
 .post-author {
     font-weight: bold;
-    color: #E50914;
+    color: #d62828;
     margin-bottom: 5px;
 }
 

@@ -1,4 +1,4 @@
- import * as TMDB from '../../tmdb_wrapper.js';
+import * as TMDB from '../JavaScript/tmdb_wrapper.js';
  
 // 1. Grab the Movie ID from the browser's URL bar
 const urlParams = new URLSearchParams(window.location.search);
