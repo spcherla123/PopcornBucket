@@ -1,4 +1,4 @@
-import * as TMDB from '../JavaScript/tmdb_wrapper.js';
+import * as TMDB from '../../JavaScript/tmdb_wrapper.js';
 const urlParams = new URLSearchParams(window.location.search);
 const showID = urlParams.get('show');
 const movieID = urlParams.get('movie');
