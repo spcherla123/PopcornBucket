@@ -24,7 +24,10 @@ div {
 
 body {
     font-family: "Raleway", inter, arial;
-    background-color: #FFD447;
+    /*background-color: #FFD447;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .SignUp {
@@ -195,6 +198,43 @@ body {
 }
 
 /* [Daniel] */
+
+#homepage-backround-container {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('https://en.wikipedia.org/wiki/Spider-Man#/media/File:Web_of_Spider-Man_Vol_1_129-1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /* background-color: #1f1f1f;*/
+    padding: 60px 60px 20px 20px;
+
+}
+
+#homepage-container {
+   width: 80%;
+  height: 60%;
+  
+  /* Distinct background so it sits clearly on top of the larger background */
+  background-color: #FFD447; /* Or background-image: url('inner-bg.jpg'); */
+  
+  /* Centers text or elements inside this inner box */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* Aesthetic touches */
+  padding: 30px;
+  border-radius: 12px; /* Smooths the corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Makes it pop out from the background */
+
+}
 
 /* Arrange the cards into a responsive grid system */
 .movie-grid {

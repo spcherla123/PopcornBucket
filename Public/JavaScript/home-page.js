@@ -39,14 +39,18 @@ function searchMovies(event) {
 try {
     const movies = await TMDB.GetTrendingAll();
 
+    const homepageContainer = document.getElementById('homepage-backround-container');
+    homepageContainer.style.backgroundImage = `url(${TMDB.GetImageUrl(movies[0].PosterPath)})`;
+
     const grid = document.getElementById('trending-all-grid');
     grid.innerHTML = ''; // Clear out any old text
-
+    
     movies.forEach(movie => {
         // 1. Create a container card for the single movie
         const movieCard = document.createElement('div');
         movieCard.className = 'movie-card';
-
+        
+        
         // 2. Combine the base image URL with the backdrop path
         // use a fallback image in case the movie doesn't have a backdrop
         const backdropUrl = TMDB.GetImageUrl(movie.PosterPath);

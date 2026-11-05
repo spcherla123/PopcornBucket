@@ -1,0 +1,91 @@
+<!-- https://www.quackit.com/css/animations/examples/css_animation_floating_particles.cfm-->
+
+<!doctype html>
+<title>Example</title>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #0f172a; /* Deep blue night sky */
+}
+
+.particles-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    /*background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    background-image: url('../Resources/popcorn.png');
+    background-size: contain; /* Forces the image to scale down to 5px, 12px, etc. */
+    background-repeat: no-repeat;
+    background-position: center;
+  
+    /* Start them off the bottom of the screen */
+    bottom: 110%; 
+    
+    /* 
+       1. float-up: carries them upward at varying speeds.
+       2. fade-out: makes them disappear before hitting the top.
+    */
+    animation: 
+        float-down  8s infinite linear,
+        fade-out 8s infinite ease-out;
+}
+
+/* Adding glowing variations */
+.particle.glow {
+   /* box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);*/
+    border-radius: 50%;
+    
+    background-color: rgba(255, 255, 255, 0);
+    
+}
+
+/* Manually placing a few for the demo. In a real app, you might generate 50 of these via JS */
+.p1 { left: 10%; width: 15px; height: 15px; animation-duration: 9s; animation-delay: 0s; }
+.p2 { left: 25%; width: 25px; height: 25px; animation-duration: 14s; animation-delay: 2s; }
+.p3 { left: 45%; width: 50px; height: 50px; animation-duration: 7s; animation-delay: 4s; }
+.p4 { left: 65%; width: 100px; height: 100px; animation-duration: 18s; animation-delay: 1s; }
+.p5 { left: 85%; width: 75px; height: 75px; animation-duration: 11s; animation-delay: 3s; }
+
+@keyframes float-up {
+    to {
+        transform: translateY(-120vh) translateX(20px); /* Drift up and slightly right */
+    }
+}
+
+@keyframes float-down {
+    to {
+        transform: translateY(120vh) translateX(20px); /* Drift up and slightly right */
+    }
+}
+
+@keyframes fade-out {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; } /* Fade out near the top */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle {
+        display: none; /* Safest to remove moving background cruft entirely */
+    }
+}
+</style>
+
+<div class="particles-container">
+    <div class="particle p1 glow"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3 glow"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5glow"></div>
+</div>
