@@ -199,10 +199,141 @@ body {
 
 /* [Daniel] */
 
-#homepage-backround-container {
+.particle-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #0f172a; /* Deep blue night sky */
+}
+
+.particles-container {
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 100vh;
-    background-image: url('https://en.wikipedia.org/wiki/Spider-Man#/media/File:Web_of_Spider-Man_Vol_1_129-1.png');
+  height: 100%;
+    overflow: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.particle {
+    position: absolute;
+    /*background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    background-image: url('../Resources/popcorn.png');
+    background-size: contain; /* Forces the image to scale down to 5px, 12px, etc. */
+    background-repeat: no-repeat;
+    background-position: center;
+  
+    /* Start them off the bottom of the screen */
+    bottom: 110%; 
+    
+    /* 
+       1. float-up: carries them upward at varying speeds.
+       2. fade-out: makes them disappear before hitting the top.
+    */
+    animation: 
+        float-down  8s infinite linear,
+        fade-out 8s infinite ease-out;
+}
+
+/* Adding glowing variations */
+.particle.glow {
+   /* box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);*/
+    border-radius: 50%;
+    
+    background-color: rgba(255, 255, 255, 0);
+    
+}
+
+/* Manually placing a few for the demo. In a real app, you might generate 50 of these via JS */
+.p1 { left: 10%; width: 15px; height: 15px; animation-duration: 9s; animation-delay: 0s; }
+.p2 { left: 25%; width: 25px; height: 25px; animation-duration: 14s; animation-delay: 2s; }
+.p3 { left: 45%; width: 50px; height: 50px; animation-duration: 7s; animation-delay: 4s; }
+.p4 { left: 65%; width: 100px; height: 100px; animation-duration: 18s; animation-delay: 1s; }
+.p5 { left: 85%; width: 75px; height: 75px; animation-duration: 110s; animation-delay: 3s; }
+
+@keyframes float-up {
+    to {
+        transform: translateY(-120vh) translateX(20px); /* Drift up and slightly right */
+    }
+}
+
+@keyframes float-down {
+    to {
+        transform: translateY(120vh) translateX(20px); /* Drift up and slightly right */
+    }
+}
+
+@keyframes fade-out {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; } /* Fade out near the top */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle {
+        display: none; /* Safest to remove moving background cruft entirely */
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  text-align: center;
+  padding: 40px 20px 24px;
+  gap: 24px;
+}
+
+#tmdb-logo {
+  width: 110px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+
+#tmdb-attribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+#tmdb-attribution p {
+  font-size: 12px;
+  color: #9298a3;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 450px;
+}
+
+#footer-copyright {
+  font-size: 12px;
+  color: #737985;
+}
+
+#tmdb-logo:hover {
+  opacity: 0.8;
+}
+
+#homepage-backround-container {
+       width: 100%;
+  height: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #000000;
+    /*background-image: url('https://en.wikipedia.org/wiki/Spider-Man#/media/File:Web_of_Spider-Man_Vol_1_129-1.png');*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -212,13 +343,13 @@ body {
     justify-content: center;
     align-items: center;
    /* background-color: #1f1f1f;*/
-    padding: 60px 60px 20px 20px;
+    padding: 0px 0px 0px 0px;
 
 }
 
 #homepage-container {
-   width: 80%;
-  height: 60%;
+   width: 100%;
+  height: 100%;
   
   /* Distinct background so it sits clearly on top of the larger background */
   background-color: #FFD447; /* Or background-image: url('inner-bg.jpg'); */
@@ -231,6 +362,7 @@ body {
   
   /* Aesthetic touches */
   padding: 30px;
+  margin: 0px;
   border-radius: 12px; /* Smooths the corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Makes it pop out from the background */
 
@@ -252,14 +384,15 @@ body {
   margin-left: 0;
   margin-right: 0;
 
-  width: 100%;
+  width: 80%;
   box-sizing: border-box;
-  background-color: #ffc400;
+  background-color: #ffc40000;
+  
   
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-  box-shadow: 0 4px 20px rgba(27, 16, 0, 0.521);
+  /*box-shadow: 0 4px 20px rgba(27, 16, 0, 0.521);*/
 }
 
 /* Hides the scrollbar track for Chrome, Safari, and Opera */
@@ -270,11 +403,11 @@ body {
 /* Individual movie card container for home page */
 .movie-card {
   flex: 0 0 auto; /* Prevents cards from shrinking */
-  width: 200px;
-  background-color: #1f1f1f;
+  width: 150px;
+  background-color: #1f1f1f00;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.473);
   transition: transform 0.2s ease;
 }
 
