@@ -23,31 +23,44 @@
             <div class="particle p5glow"></div>
         </div>
 
+        
         <div id="homepage-container">
 
            <!-- // Add another container so that there can be a horizontal layout that has a right bar with recent community post, and a left bar for somethin-->
 
         <!-- ...Daniel -->
+            <div id="homepage-header-container">
+                <h1 style="text-align: center;">Popcorn Bucket</h1>
+            </div>
 
-            <h1 style="text-align: center;">Popcorn Bucket</h1>
-            <p style="text-align: center;">Review Movies and Chat with Other People</p>
+            <div id="search-container-strip">   
+                <div class="search-container">
+                    <input type="text" id="movieSearch" placeholder="Search movies..." onkeydown="searchMovies(event)">
+                </div> 
+            </div> 
 
-            <div class="search-container">
-                <input type="text" id="movieSearch" placeholder="Search movies..." onkeydown="searchMovies(event)">
-            </div>  
+            <div id="homepage-feature-container">
+                <div id="homepage-feature-image-hue-overlay"></div>
+                <div id="homepage-feature-image-overlay"></div>
+                <img id="homepage-feature-image" src="" alt="Movie Backdrop">
+                <div id="hompage-tagline">Review Movies and Chat with Other People.</div>
+            </div>
+
+           
 
             <div class="SignUp"><a href="Popcorn_Bucket_Login.html">Sign Up</a></div>
             <div class="LogIn"><a href="Popcorn_Bucket_Login.html">Log In</a></div>
             <div class="Home"><a href="PopcornBucket.html">Home</a></div>
             
         
-             <!-- // separate movie card from name -->
-            <h3>Trending All</h2>
-            <div id="trending-all-grid" class="movie-scroll-container"></div>
+            <div class="white-strip">
+                <!-- // separate movie card from name -->
+                <h3>Trending All</h2>
+                <div id="trending-all-grid" class="movie-scroll-container"></div>
+            </div>  
+                <h3>Popular Moives</h2>
+                <div id="movie-grid" class="movie-scroll-container"></div>
             
-            <h3>Popular Moives</h2>
-            <div id="movie-grid" class="movie-scroll-container"></div>
-
 
             <div class="dropdown">
             <button class="menu-button">Menu ▼</button>

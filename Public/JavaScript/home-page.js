@@ -39,8 +39,8 @@ function searchMovies(event) {
 try {
     const movies = await TMDB.GetTrendingAll();
 
-    const homepageContainer = document.getElementById('homepage-backround-container');
-  //  homepageContainer.style.backgroundImage = `url(${TMDB.GetImageUrl(movies[0].PosterPath)})`;
+    const homepageContainer = document.getElementById('homepage-feature-image');
+    homepageContainer.src = TMDB.GetImageUrl(movies[0].BackdropPath, 'w1280');
 
     const grid = document.getElementById('trending-all-grid');
     grid.innerHTML = ''; // Clear out any old text

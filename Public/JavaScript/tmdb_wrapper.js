@@ -495,7 +495,8 @@ export async function GetTrendingAll() {
             MediaType: item.media_type,
             ID: item.id,
             TitleOrName: item.title ? item.title : item.name,
-            PosterPath: item.poster_path
+            PosterPath: item.poster_path,
+            BackdropPath: item.backdrop_path
         }));
 
         return result;
