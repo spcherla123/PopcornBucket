@@ -1,0 +1,216 @@
+#homepage-header-container h1 {
+    font-family: "Raleway", inter, arial;
+    text-align: center;
+    font-size: 70px;
+}
+
+#homepage-header-container h2 {
+    font-family: "Raleway", inter, arial;
+    text-align: center;
+    font-size: 50px;
+}
+
+#homepage-header-container p {
+    font-family: "Raleway", inter, arial;
+    text-align: center;
+    font-size: 30px;
+}
+
+#homepage-header-container div {
+    font-family: "Raleway", inter, arial;
+    text-align: center;
+    font-size: 20px;
+}
+
+#homepage-header-container body {
+    font-family: "Raleway", inter, arial;
+    /*background-color: #FFD447;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.SignUp {
+    width: 90px;
+    height: 25px;
+    background-color: #c6282800;
+    color: #C62828;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    border-radius: 10px;
+}
+
+.LogIn {
+    width: 90px;
+    height: 25px;
+    background-color: #c6282800;
+    color: #C62828;
+
+    position: absolute;
+    top: 20px;
+    right: 120px;
+
+    border-radius: 10px;
+}
+
+.menu-button-image {
+    width: 50px;
+    height: 50px;
+}
+
+#homepage-header-container {
+    background-color: #FFD447;
+    width: 100%;
+}
+
+header {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SignUp a,
+.LogIn a,
+.SearchBar a,
+.Home a,
+.Menu a {
+    color: black;
+    text-decoration: none;
+}
+
+.SignUp a:hover,
+.LogIn a:hover,
+.SearchBar a:hover
+.Menu a:hover {
+    color: #FFD447;
+    
+}
+
+/* Dropdown container */
+.dropdown {
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    display: inline-block;
+    z-index: 1000;
+}
+
+/* Menu button */
+.menu-button {
+    background-color: #d6282800;
+    color: rgb(209, 29, 29);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 18px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #ffc400;
+    min-width: 180px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Hover over links */
+
+
+/* Show dropdown */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.popcornbucket-logo-image {
+    width: 200px;
+    height: 200px;
+    image-rendering: smooth,
+}
+
+.Menu {
+    width: 90px;
+    height: 25px;
+     background-color: #c6282800;
+    color: #C62828;
+
+    position: absolute;
+    top: 20px;
+    left: 25px;
+
+    border-radius: 10px;
+}
+
+.Home {
+    width:90px;
+    height:25px;
+    background-color: #c6282800;
+    color: red;
+    position: absolute;
+    top: 20px;
+    left: 175px;
+
+    border-radius: 10px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  text-align: center;
+  padding: 40px 20px 24px;
+  gap: 24px;
+}
+
+#tmdb-logo {
+  width: 110px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+
+#tmdb-attribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+#tmdb-attribution p {
+  font-size: 12px;
+  color: #9298a3;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 450px;
+}
+
+#footer-copyright {
+  font-size: 12px;
+  color: #737985;
+}
+
+#tmdb-logo:hover {
+  opacity: 0.8;
+}

@@ -50,7 +50,7 @@ let images;
 let videos;
 if(movieID) {
     const movie = await TMDB.GetMovieDetails(movieID);
-    backdropImg.src = TMDB.GetImageUrl(movie.BackdropPath);
+    backdropImg.src = TMDB.GetImageUrl(movie.BackdropPath, 'w1280');
     
     document.getElementById('details-date-label').textContent = "Release Date:";
     document.getElementById('details-runtime-label').textContent = "Runtime:";

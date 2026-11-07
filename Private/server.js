@@ -32,7 +32,7 @@ app.use(express.static(publicDirectory));
 // Show the login page
 app.get("/", (req, res) => {
     res.sendFile(
-        path.join(publicDirectory, "HTML/Popcorn_Bucket_Login.html")
+        path.join(publicDirectory, "HTML/PopcornBucket.html")
     );
 });
 

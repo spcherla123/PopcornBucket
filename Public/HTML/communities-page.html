@@ -11,28 +11,52 @@
 
 
 <body>
-    <div id="sidebar">
-        <h3>Communities</h3>
-        <div id="group-list"></div>
-    </div>
 
-    <div id="feed-container">
-        <h2 id="current-group-title">Select a Community</h2>
 
-        <div id="post-form-container" style="display: none;">
-            <div class="form-group">
-                <textarea id="post-content" placeholder="Share your thoughts in this community"></textarea>
-            </div>
-            <button onclick="createNewPost()">Post to Community</button>
+    <div id="header"></div>
+    
+    <div id="communities-page-container">
+
+        <div id="sidebar">
+            <h3>Communities</h3>
+            <div id="group-list"></div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;" />
+        <div id="feed-container">
+            <h2 id="current-group-title">Select a Community</h2>
 
-        <div id="posts-feed"></div>
+            <div id="post-form-container" style="display: none;">
+                <div class="form-group">
+                    <textarea id="post-content" placeholder="Share your thoughts in this community"></textarea>
+                </div>
+                <button onclick="createNewPost()">Post to Community</button>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;" />
+
+            <div id="posts-feed"></div>
+        </div>
     </div>
 
+    <div id="footer"></div>
 
     <script src="../JavaScript/communities-page.js"></script>
+
+    <script>
+        // for header
+        fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        });
+
+        // for footer
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+    </script>
 
 
 </body>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popcorn Bucket</title>
+    <link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+
+<body>
+   <div id="header"></div>
+   
+
+    <!-- Container that holds the popcorn particle view space -->
+    <div id="homepage-backround-container"> </div>
+
+    <!-- Container that holds the popcorn particles -->
+    <!-- Todo create these via javascript -->
+    <div class="particles-container">
+        <div class="particle p1 glow"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3 glow"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5glow"></div>
+    </div>
+
+    <!-- Container that holds the main homescreen contents -->   
+    <div id="homepage-container">
+
+        <!-- Container that holds the search bar strip (the white background behind the -->
+        <!-- the actual seach bar). -->
+        <div id="search-container-strip">  
+            <!-- The actual search bar -->
+            <div class="search-container">
+                <input type="text" id="movieSearch" placeholder="Search movies..." onkeydown="searchMovies(event)">
+            </div> 
+        </div> 
+
+        <!-- Container that holds the components of the 1st trending media item -->
+        <!-- and the popcorn bucket tagline. -->
+        <div id="homepage-feature-container">
+            <!-- Makes the hue purely monotone (yellow). -->
+            <div id="homepage-feature-image-hue-overlay"></div>
+            <!-- Reduces the contrast with a yellow overlay. -->
+            <div id="homepage-feature-image-overlay"></div>
+            <!-- The actual media backdrop image. -->
+            <img id="homepage-feature-image" src="" alt="Movie Backdrop">
+            <!-- The tagline. -->
+            <div id="hompage-tagline">Review Movies and Chat with Other People.</div>
+        </div>
+
+                
+        <!-- Trending all strip -->
+        <div class="white-strip">
+            <h3>Trending All</h2>
+            <div id="trending-all-grid" class="movie-scroll-container"></div>
+        </div>  
+
+        <!-- popular movies strip -->
+        <div class="yellow-strip">
+            <h3>Popular Moives</h2>
+            <div id="movie-grid" class="movie-scroll-container"></div>
+        </div>
+        
+    </div>
+     <div id="footer"></div>
+
+    <!-- homepage js file -->
+    <script src="../JavaScript/home-page.js", type="module"></script>
+
+    <script>
+        // for header
+        fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        });
+
+        // for footer
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+    </script>
+
+</body>
+</html>
