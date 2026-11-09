@@ -254,23 +254,33 @@ body {
     object-fit: cover; /* Crops the image perfectly without stretching it */
     object-position: center top; /* Keeps the focus on the upper/middle part of the picture */
     display: block;
-    background-image: url('../Resources/tmdblogo.svg');
     z-index: 0;
 }
 
 
 
-#homepage-feature-image {
+.homepage-feature-image {
+    top: 0;
+    left: 0;
     position: absolute;
     width: 100%;
     height: 350px;
     object-fit: cover; /* Crops the image perfectly without stretching it */
     object-position: center top; /* Keeps the focus on the upper/middle part of the picture */
     display: block;
-    background-image: url('../Resources/tmdblogo.svg');
     z-index: 1; /* Keeps it above other content */
+
+    transition: opacity 1.0s ease-in-out;
+    
 }
 
+.homepage-feature-image.fade {
+    opacity: 0;
+}
+
+.homepage-feature-image.show {
+    opacity: 1;
+}
 
 #homepage-feature-image-hue-overlay {
     position: absolute;

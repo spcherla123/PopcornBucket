@@ -38,9 +38,50 @@ function searchMovies(event) {
 
 try {
     const movies = await TMDB.GetTrendingAll();
+    
+    const featureImage1 = document.getElementById('feature-image1');
+    const featureImage2 = document.getElementById('feature-image2');
+    
 
-    const homepageContainer = document.getElementById('homepage-feature-image');
-    homepageContainer.src = TMDB.GetImageUrl(movies[0].BackdropPath, 'w1280');
+    let index = 0;
+    const maxNumber = movies.length - 1; // Cycles through 0, 1, 2, 3, 4
+    
+
+    featureImage2.classList.remove("show");
+    featureImage2.classList.add("fade");
+    featureImage1.src = TMDB.GetImageUrl(movies[0].BackdropPath, 'w1280');;
+    featureImage1.classList.remove("fade");
+    featureImage1.classList.add("show");
+
+
+
+    let isImg1Active = true;
+
+    const timerId = setInterval(() => {
+        index = (index + 1) % maxNumber;
+        const nextSrc = TMDB.GetImageUrl(movies[index].BackdropPath, 'w1280');
+        
+        if (isImg1Active) {
+            featureImage1.classList.remove("show");
+            featureImage1.classList.add("fade");
+            featureImage2.src = nextSrc;
+            featureImage2.classList.remove("fade");
+            featureImage2.classList.add("show");
+           
+        } else {
+            featureImage2.classList.remove("show");
+            featureImage2.classList.add("fade");
+            featureImage1.src = nextSrc;
+            featureImage1.classList.remove("fade");
+            featureImage1.classList.add("show");
+        
+        }
+
+        isImg1Active = !isImg1Active;
+        console.log(index);
+    }, 5000);
+    
+
 
     const grid = document.getElementById('trending-all-grid');
     grid.innerHTML = ''; // Clear out any old text
