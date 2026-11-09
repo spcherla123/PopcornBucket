@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Movie Watchlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: red;
+            color: white;
+            padding: 30px;
+            margin: 0;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            min-height: 70px;
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-section {
+            background-color: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .profile-section:hover {
+            background-color: #444;
+        }
+
+        .profile-avatar {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-section h2 {
+            font-size: 1rem;
+            margin: 0 0 2px 0;
+        }
+
+        .profile-section p {
+            font-size: 0.8rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 105%;
+            right: 0;
+            background-color: #222;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
+            border-radius: 6px;
+            z-index: 1000;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            text-align: left;
+            transition: background-color 0.2s;
+        }
+
+        .profile-dropdown a:hover {
+            background-color: #444;
+            color: #ffeb3b;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+
+        .watchlist-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .movie-card {
+            background-color: yellow;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            color: black;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .star-rating {
+            margin: 15px 0;
+        }
+
+            .star-rating .popcorn {
+                font-size: 1.8rem;
+                cursor: pointer;
+                display: inline-block;
+                filter: grayscale(100%);
+                opacity: 0.3;
+                transition: transform 0.1s ease, filter 0.2s ease, opacity 0.2s ease;
+                margin: 0 2px;
+            }
+
+                .star-rating .popcorn:hover {
+                    transform: scale(1.2);
+                    filter: none !important;
+                    opacity: 1 !important
+                }
+
+            .star-rating:has(.popcorn:hover) .popcorn:not(:hover):not(:hover ~ .popcorn) {
+                filter: none;
+                opacity: 1;
+            }
+
+            .star-rating .popcorn.active {
+                filter: none;
+                opacity: 1;
+            }
+
+
+        .reset-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 0 auto;
+        }
+
+            .reset-btn:hover {
+                background-color: #555;
+            }
+
+        .rating-display {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <div class="profile-container">
+            <div class="profile-section" id="profile-widget">
+                <div class="profile-avatar">👤</div>
+                <h2>Movie Fan </h2>
+                <p>Navigation</p>
+            </div>
+            <div class="profile-dropdown" id="dropdown-menu">
+                <a href="index.html">🏠 Home Page</a>
+                <a href="community.html">💬 Community Page</a>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🎬 Rated Movies</h2>
+    <div class="watchlist-container" id="rated-container">
+    </div>
+
+    <h2 class="section-title">🍿 Unrated Movies</h2>
+    <div class="watchlist-container" id="unrated-container">
+        <div class="movie-card" data-id="movie-123">
+            <h1>Movie 1</h1>
+            <div class="star-rating">
+                <span class="popcorn" data-value="1">🍿</span>
+                <span class="popcorn" data-value="2">🍿</span>
+                <span class="popcorn" data-value="3">🍿</span>
+                <span class="popcorn" data-value="4">🍿</span>
+                <span class="popcorn" data-value="5">🍿</span>
+            </div>
+            <p class="rating-display">No Rating Yet</p>
+            <button class="reset-btn">Reset Rating</button>
+        </div>
+
+        <div class="movie-card" data-id="movie-321">
+            <h1>Movie 2</h1>
+            <div class="star-rating">
+                <span class="popcorn" data-value="1">🍿</span>
+                <span class="popcorn" data-value="2">🍿</span>
+                <span class="popcorn" data-value="3">🍿</span>
+                <span class="popcorn" data-value="4">🍿</span>
+                <span class="popcorn" data-value="5">🍿</span>
+            </div>
+            <p class="rating-display">No Rating Yet</p>
+            <button class="reset-btn">Reset Rating</button>
+        </div>
+    </div>
+
+    <script>
+
+        const profileWidget = document.getElementById('profile-widget');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        profileWidget.addEventListener('click', (event) => {
+    event.stopPropagation(); 
+    dropdownMenu.classList.toggle('show');
+});
+
+        window.addEventListener('click', () => {
+            if(dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+                         const ratedContainer = document.getElementById('rated-container');
+                 const unratedContainer = document.getElementById('unrated-container');
+
+                 document.querySelectorAll('.movie-card').forEach(card => {
+                 const stars = card.querySelectorAll('.star-rating .popcorn');
+                 const movieID = card.getAttribute('data-id');
+                 const display = card.querySelector('.rating-display');
+                 const resetBtn = card.querySelector('.reset-btn');
+
+                 const savedRating = localStorage.getItem(`rating_${movieID}`);
+
+                 if (savedRating) {
+                 updateStars(stars, savedRating);
+                 display.textContent = `Rated: ${savedRating}/5`;
+                 ratedContainer.appendChild(card);
+                 } else {
+                 unratedContainer.appendChild(card);
+                 }
+
+                 stars.forEach(star => {
+                 star.addEventListener('click', () => {
+                 const value = star.getAttribute('data-value');
+                 localStorage.setItem(`rating_${movieID}`, value);
+                 updateStars(stars, value);
+                 display.textContent = `Rated: ${value}/5`;
+                 ratedContainer.appendChild(card);
+                 });
+                 });
+
+                 resetBtn.addEventListener('click', () => {
+                 localStorage.removeItem(`rating_${movieID}`);
+                 updateStars(stars, 0);
+                 display.textContent = "No Rating Yet";
+                 unratedContainer.appendChild(card);
+                 });
+                 });
+
+                 function updateStars(stars, rating) {
+    stars.forEach(star => {
+        const val = star.getAttribute('data-value');
+        if (val <= rating) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+}
+    </script>
+</body>
+</html>
