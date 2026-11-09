@@ -33,7 +33,7 @@
 .SignUp {
     width: 90px;
     height: 25px;
-    background-color: #c6282800;
+    background-color: #c62828;
     color: #C62828;
 
     position: absolute;
@@ -46,7 +46,7 @@
 .LogIn {
     width: 90px;
     height: 25px;
-    background-color: #c6282800;
+    background-color: #c62828;
     color: #C62828;
 
     position: absolute;
@@ -163,7 +163,7 @@ header {
 .Home {
     width:90px;
     height:25px;
-    background-color: #c6282800;
+    background-color: #c62828;
     color: red;
     position: absolute;
     top: 20px;
