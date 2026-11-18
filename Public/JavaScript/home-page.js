@@ -11,6 +11,7 @@ import * as TMDB from './tmdb_wrapper.js';
 // Movie Search
 // ----------------------------------------
 
+
 function searchMovies(event) {
 
     // Check if the Enter key was pressed
@@ -18,23 +19,25 @@ function searchMovies(event) {
 
         let searchText = document.getElementById("movieSearch").value;
 
-        if (searchText.trim() === "") {
-
+        if (searchText.trim() === "") 
+        {
             alert("Please enter a movie name.");
 
         } else {
 
-            alert("You searched for: " + searchText);
+            //alert("You searched for: " + searchText);
+            window.location.href = "../HTML/search-results-page.html";
         }
     }
 }
+
+document.getElementById('movieSearch').addEventListener('keydown', searchMovies);
+
 
 // [Daniel]
 // ----------------------------------------
 // Display trending
 // ----------------------------------------
-
-
 
 try {
     const movies = await TMDB.GetTrendingAll();

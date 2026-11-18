@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="../CSS/search-results-style.css">
+    <link rel="stylesheet" href="../CSS/common-elements-style.css">
+
+</head>
+
+<body>
+     <div id="header"></div>
+
+    <!-- Container that holds the search bar strip (the white background behind the -->
+    <!-- the actual seach bar). -->
+    <div id="search-container-strip">  
+        <!-- The actual search bar -->
+        <div class="search-container">
+            <input type="text" id="movieSearch" placeholder="Search movies..." onkeydown="searchMovies(event)">
+        </div> 
+    </div> 
+
+    <div class="sidebar">
+        <div class="sidebar-header"> Search Results </div>
+        <div class="sidebar-element-container"> 
+            <div id="sidebar-element.TVShow" class="sidebar-element"> 
+                <span class="sidebar-element-name"> TV Shows </span>
+                <span class="sidebar-element-count"> 1000 </span>
+            </div>
+
+             <div id="sidebar-element.Movie" class="sidebar-element"> 
+                <span class="sidebar-element-name"> Movies </span>
+                <span class="sidebar-element-count"> 568 </span>
+            </div>
+
+            <div id="sidebar-element.People" class="sidebar-element"> 
+                <span class="sidebar-element-name"> People </span>
+                <span class="sidebar-element-count"> 128 </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="results-container"></div>
+
+    <div id="footer"></div>
+
+    <script src="../JavaScript/search-results-page.js"></script>
+
+    <script>
+   
+
+        // for footer
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+    </script>
+
+
+
+
+</body>
+</html>

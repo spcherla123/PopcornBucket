@@ -1,0 +1,44 @@
+/* ========================================
+   SEARCH BAR
+   ======================================== */
+.search-container {
+    text-align: center;
+    margin: 20px;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
+
+.search-container input {
+    width: 300px;
+    padding: 10px 15px;
+    background-color: #ffc400;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: black;
+    font-size: 18px;
+    box-shadow: none;
+     position: sticky;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
+
+.search-container input::placeholder {
+    color: #d62828;
+    opacity: 1;
+}
+
+.search-container input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* [Daniel] */
+#search-container-strip {
+    background-color: rgb(255, 248, 230);
+    width: 100%;
+    position: sticky;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
