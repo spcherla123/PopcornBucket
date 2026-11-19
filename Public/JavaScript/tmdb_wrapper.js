@@ -281,9 +281,9 @@ export async function GetEpisodeDetails(InShowID, InSeasonNumber, InEpisodeNumbe
     }
 }
 
-export async function GetMoviesBySearch(InSearch, InAdultIncluded = true) {
+export async function GetMoviesBySearch(InSearch, InPage = 1, InAdultIncluded = true) {
     try {
-        const url = `${BASE_URL}/search/movie?query=${InSearch}&include_adult=${InAdultIncluded}&language=en-US&page=1`; 
+        const url = `${BASE_URL}/search/movie?query=${InSearch}&include_adult=${InAdultIncluded}&language=en-US&page=${InPage}`; 
         const response = await fetch(url, OPTIONS)
         const data = await response.json();
 

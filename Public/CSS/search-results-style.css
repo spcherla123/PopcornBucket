@@ -18,10 +18,60 @@ body {
     padding: 0px;
 }
 
+.page-control {
+    width:fit-content;
+    background-color: rgba(201, 201, 201, 0);
+    border-radius: 4px;
+    height: 30px;
+    overflow: hidden;
+    padding: 0px;
+    display: flex;
+    gap: 0;
+    border-width: 1px;
+    border-color: rgb(198, 198, 198);
+    border-style: solid;
+    box-shadow: 100px;
+}
+
+.page-control:hover {
+
+}
+
+.page-button,
+#page-button-back,
+#page-button-forward {
+  cursor: pointer;
+  position: relative;
+  border-color: rgba(177, 177, 177, 0);
+  height: 100%;
+  margin: 0px;
+  border-width: 0px;
+}
+
+.page-button {
+    aspect-ratio: 1 / 1; 
+}
+
+.page-button:hover,
+#page-button-back:hover,
+#page-button-forward:hover {
+  background-color: rgb(150, 150, 150);
+}
+
+#page-button-forward {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+#page-button-back {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
 /* Arrange the cards into a responsive grid system */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -31,8 +81,8 @@ body {
   background-color: #1f1f1f00;
   border-radius: 8px;
 
-  width: 100px;
-  height: 210px;
+  width: 150px;
+  height: 280px;
 }
 
 /* Force the backdrop into a proper wide cinematic aspect ratio */
