@@ -281,32 +281,19 @@ export async function GetEpisodeDetails(InShowID, InSeasonNumber, InEpisodeNumbe
     }
 }
 
-/** 
- * Returns the movies filtered by a search keyword.
- * 
- * @async
- * @function GetMoviesBySearch
- * @param {string} InSearch - The search query/keyword.
- * @param {boolean} [InAdultIncluded=true] - Whether to include adult/NSFW content in search results.
- * @returns {Promise<Array<{
- *   ID: number,
- *   Title: string,
- *   PosterPath: string|null
- * }>|undefined>} A promise that resolves to an array of matching movies, or undefined if an error occurs.
- */
 export async function GetMoviesBySearch(InSearch, InAdultIncluded = true) {
     try {
         const url = `${BASE_URL}/search/movie?query=${InSearch}&include_adult=${InAdultIncluded}&language=en-US&page=1`; 
         const response = await fetch(url, OPTIONS)
         const data = await response.json();
 
-        const result = data.results.map(item => ({
+       /* const result = data.results.map(item => ({
            ID: item.id,
            Title: item.title,
            PosterPath: item.poster_path
-        }));
+        }));*/
 
-        return result;
+        return data;
      } catch (error) {
         console.error("Oops! Couldn't load the movies by search:", error);
      }
@@ -331,13 +318,7 @@ export async function GetPersonBySearch(InSearch, InAdultIncluded = true) {
         const response = await fetch(url, OPTIONS)
         const data = await response.json();
 
-        const result = data.results.map(item => ({
-           ID: item.id,
-           Name: item.name,
-           ProfilePath: item.profile_path
-        }));
-
-        return result;
+        return data;
      } catch (error) {
         console.error("Oops! Couldn't load the movies by search:", error);
      }
@@ -378,13 +359,9 @@ export async function GetShowsBySearch(InSearch, InYear = -1, InFirstAirDate = -
         const response = await fetch(url, OPTIONS)
         const data = await response.json();
 
-        const result = data.results.map(item => ({
-           ID: item.id,
-           Name: item.name,
-           PosterPath: item.poster_path
-        }));
+        return data;
 
-        return result;
+     
      } catch (error) {
         console.error("Oops! Couldn't load the movies by search:", error);
      }

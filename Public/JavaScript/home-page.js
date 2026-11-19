@@ -26,7 +26,7 @@ function searchMovies(event) {
         } else {
 
             //alert("You searched for: " + searchText);
-            window.location.href = "../HTML/search-results-page.html";
+            window.location.href = `../HTML/search-results-page.html?query=${searchText}`;
         }
     }
 }

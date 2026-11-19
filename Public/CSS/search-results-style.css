@@ -4,15 +4,61 @@ body {
     background-color: #ffffff;
 }
 
+#page-body {
+    display: flex;
+}
+
 .results-container {
-     background-color: #ffe28d;
-     width: 60%;
-     width: 80vh;
+    background-color: #9494941f;
+    width: 80%;
+    height: 80vh;
+    margin: 20px;
+    overflow: auto;
+    border-radius: 8px;
+    padding: 0px;
+}
+
+/* Arrange the cards into a responsive grid system */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Individual movie card container for home page */
+.movie-card {
+  background-color: #1f1f1f00;
+  border-radius: 8px;
+
+  width: 100px;
+  height: 210px;
+}
+
+/* Force the backdrop into a proper wide cinematic aspect ratio */
+.movie-backdrop-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Style the title directly below the image */
+.movie-title {
+  color: #000000;
+  font-size: 1rem;
+  padding-top: 12px;
+  margin: 0;
+  font-family: sans-serif;
 }
 
 .sidebar {
     background-color: #fffdf7;
-    width: 40%;
+    width: 20%;
     height: 80vh;
     display: block;
     overflow: hidden;
@@ -52,7 +98,7 @@ body {
     height: 10%;
     text-align: center;
     justify-content: center; /* Centers horizontally */
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 20px;
 
     display: flex;

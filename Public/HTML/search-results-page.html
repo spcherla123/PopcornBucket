@@ -21,32 +21,35 @@
         </div> 
     </div> 
 
-    <div class="sidebar">
-        <div class="sidebar-header"> Search Results </div>
-        <div class="sidebar-element-container"> 
-            <div id="sidebar-element.TVShow" class="sidebar-element"> 
-                <span class="sidebar-element-name"> TV Shows </span>
-                <span class="sidebar-element-count"> 1000 </span>
+    <div id="page-body">
+        <div class="sidebar">
+            <div class="sidebar-header"> Search Results </div>
+            <div class="sidebar-element-container"> 
+                <button id="sidebar-element-TVShow" class="sidebar-element"> 
+                    <span id="sidebar-element-TVShow-name" class="sidebar-element-name"> TV Shows </span>
+                    <span id="sidebar-element-TVShow-count" class="sidebar-element-count"> 1000 </span>
+                </button>
+
+                <button id="sidebar-element-Movie" class="sidebar-element"> 
+                    <span id="sidebar-element-Movie-name" class="sidebar-element-name"> Movies </span>
+                    <span id="sidebar-element-Movie-count" class="sidebar-element-count"> 568 </span>
+                </button>
+
+                <button id="sidebar-element-People" class="sidebar-element"> 
+                    <span id="sidebar-element-People-name" class="sidebar-element-name"> People </span>
+                    <span id="sidebar-element-People-count" class="sidebar-element-count"> 128 </span>
+                </button>
             </div>
 
-             <div id="sidebar-element.Movie" class="sidebar-element"> 
-                <span class="sidebar-element-name"> Movies </span>
-                <span class="sidebar-element-count"> 568 </span>
-            </div>
-
-            <div id="sidebar-element.People" class="sidebar-element"> 
-                <span class="sidebar-element-name"> People </span>
-                <span class="sidebar-element-count"> 128 </span>
-            </div>
         </div>
 
+        <div class="results-container">
+            <div id="search-results-grid" class="movie-grid"></div>
+        </div>
     </div>
-
-    <div class="results-container"></div>
-
     <div id="footer"></div>
 
-    <script src="../JavaScript/search-results-page.js"></script>
+    <script src="../JavaScript/search-results-page.js", type="module"></script>
 
     <script>
    
