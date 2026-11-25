@@ -8,29 +8,93 @@ body {
     display: flex;
 }
 
+/* ========================================
+   SEARCH BAR
+   ======================================== */
+.search-container {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ffc400;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 18px;
+    box-shadow: none;
+     position: sticky;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
+
+.search-container input::placeholder {
+    color: #d62828;
+    opacity: 1;
+}
+
+.search-container input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* [Daniel] */
+#search-container-strip {
+    background-color: rgb(255, 248, 230);
+    width: 100%;
+    margin: 0px;
+    
+    position: sticky;
+    top: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
+}
+
+.results-viewport {
+    flex: 1; /* Forces this wrapper to take up the remaining 80% of the screen */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers your .page-control buttons underneath */
+    min-width: 0; /* Prevents flex items from overflowing horizontally */
+}
+
 .results-container {
-    background-color: #9494941f;
+    flex: 1;
+    background-color: #94949400;
     width: 80%;
     height: 80vh;
     margin: 20px;
     overflow: auto;
     border-radius: 8px;
     padding: 0px;
+    display: block;
 }
+
 
 .page-control {
     width:fit-content;
-    background-color: rgba(201, 201, 201, 0);
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    width: 100%;
     border-radius: 4px;
     height: 30px;
     overflow: hidden;
-    padding: 0px;
+    padding-left: 100px;
     display: flex;
     gap: 0;
     border-width: 1px;
     border-color: rgb(198, 198, 198);
     border-style: solid;
     box-shadow: 100px;
+
+    position: sticky;
+    bottom: 0; /* Distance from the top of the viewport when it sticks */
+    z-index: 100; /* Keeps it above other content */
 }
 
 .page-control:hover {
